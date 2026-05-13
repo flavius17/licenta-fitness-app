@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Log Workout - 21 GYM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        @keyframes rowPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); background-color: #1a1a1a; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 10; position: relative; }
+            100% { transform: scale(1); background-color: #111; z-index: 1; }
+        }
+
+        .set-row.pop-effect {
+            animation: rowPop 0.3s ease-out;
+            border: 1px solid #333;
+        }
+
+        .navbar-custom { 
+            background-color: #1a0505; 
+            border-bottom: 2px solid #8B0000; 
+            padding-top: 25px !important; 
+            padding-bottom: 25px !important; 
+            min-height: 90px;
+        }
+        
+        .brand-text { 
+            font-family: 'Black Ops One', cursive; 
+            text-transform: uppercase; 
+            font-size: 1.8rem; 
+            letter-spacing: 2px; 
+            color: #fff; 
+            line-height: 1; 
+        }
+        
+        .timer { font-family: 'Courier New', monospace; font-size: 1rem; color: #ff3333; font-weight: bold; margin-top: 5px; }
+
+        .centered-container { max-width: 800px; margin: 0 auto; width: 100%; }
+
+        .exercise-card { background-color: #000; border-bottom: 1px solid #333; margin-bottom: 5px; padding-bottom: 15px; }
+        .ex-header { display: flex; align-items: center; padding: 15px; background-color: #050505; }
+        .ex-thumb-small { width: 45px; height: 45px; border-radius: 50%; overflow: hidden; margin-right: 15px; border: 1px solid #333; }
+        .ex-thumb-small img { width: 100%; height: 100%; object-fit: cover; }
+        .ex-title { font-weight: 700; font-size: 1.1rem; color: #fff; flex: 1; }
+        .ex-menu-btn { color: #666; font-size: 1.2rem; cursor: pointer; padding: 10px; }
+        .ex-rest-info { padding-left: 75px; margin-bottom: 10px; font-size: 0.9rem; color: #3498db; display: flex; align-items: center; gap: 5px; font-weight: 600; }
+
+        .sets-container { padding: 0 10px; }
+        .sets-header-row { display: grid; grid-template-columns: 40px 1fr 1fr 50px; text-align: center; color: #666; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; }
+        
+        .set-row { 
+            display: grid; grid-template-columns: 40px 1fr 1fr 50px; align-items: center; margin-bottom: 8px; 
+            background-color: #111; border-radius: 8px; min-height: 45px; 
+            transition: background-color 0.2s;
+        }
+        
+        .set-num-box { background-color: #222; height: 100%; border-radius: 8px 0 0 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff; cursor: pointer; border-right: 1px solid #333; }
+        .tag-F { color: #ff3333 !important; } .tag-W { color: #f39c12 !important; } .tag-D { color: #3498db !important; }
+        .set-input { background: transparent; border: none; color: #fff; text-align: center; font-size: 1.1rem; font-weight: bold; width: 100%; padding: 10px 0; }
+        .set-input:focus { outline: none; background-color: #1a1a1a; }
+        
+        .set-check-box { height: 100%; display: flex; align-items: center; justify-content: center; cursor: pointer; border-left: 1px solid #333; }
+        .check-square { width: 22px; height: 22px; border: 2px solid #555; border-radius: 5px; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .check-square.checked { background-color: #2ecc71; border-color: #2ecc71; }
+        
+        .btn-add-set { background-color: #1c1c1c; color: #fff; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; margin-top: 5px; text-transform: uppercase; }
+
+        .bottom-actions { padding: 20px; }
+        .btn-main { width: 100%; padding: 15px; border-radius: 30px; border: none; font-family: 'Black Ops One'; font-size: 1.1rem; text-transform: uppercase; margin-bottom: 15px; }
+        .btn-grey { background-color: #333; color: #fff; }
+        .btn-red { background-color: #ff3333; color: #fff; box-shadow: 0 0 20px rgba(255, 51, 51, 0.4); }
+
+        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; display: none; align-items: center; justify-content: center; }
+        .popup-box { background-color: #1a1e29; width: 280px; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.8); }
+        .popup-item { padding: 15px 20px; border-bottom: 1px solid #2a2f3d; color: #fff; font-size: 1rem; display: flex; align-items: center; gap: 15px; cursor: pointer; }
+        .popup-item:active { background-color: #2a2f3d; }
+        .popup-delete { color: #ff4d4d; border-top: 2px solid #2a2f3d; justify-content: center; font-weight: bold; }
+        .popup-cancel { border-bottom: none; text-align: center; justify-content: center; color: #aaa; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark navbar-custom sticky-top">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div style="width: 100px; display: flex; align-items: center;">
+                <a href="#" onclick="clearAndExit(); return false;" style="text-decoration: none; cursor: pointer; white-space: nowrap;">
+                    <span style="font-family: 'Black Ops One', cursive; font-size: 1.5rem; color: #ffffff;">21</span>
+                    <span style="font-family: 'Black Ops One', cursive; font-size: 1.5rem; color: #ff3333; margin-left: 5px;">GYM</span>
+                </a>
+            </div>
+            <div class="d-flex flex-column align-items-center">
+                <span class="brand-text">NEW WORKOUT</span>
+                <span class="timer" id="timer">00:00:00</span>
+            </div>
+            <div style="width: 100px;"></div>
+        </div>
+    </nav>
+
+    <div class="centered-container">
+        <div id="exercises-list">
+            <p id="empty-msg" class="text-center mt-5" style="color: #666; font-size: 1.1rem;">
+                No exercises added yet.
+            </p>
+        </div>
+        <div class="bottom-actions">
+            <a href="/add-exercise" style="text-decoration: none;">
+                <button class="btn-main btn-grey">ADD EXERCISES MANUALLY</button>
+            </a>
+            <button class="btn-main btn-red" onclick="finishWorkout()">FINISH WORKOUT</button>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="tagPopup">
+        <div class="popup-box">
+            <div class="popup-item" onclick="setTag('F', 'tag-F')"><span style="color: #ff3333; font-weight: bold; width: 20px;">F</span> To failure</div>
+            <div class="popup-item" onclick="setTag('W', 'tag-W')"><span style="color: #f39c12; font-weight: bold; width: 20px;">W</span> Warm-up</div>
+            <div class="popup-item" onclick="setTag('D', 'tag-D')"><span style="color: #3498db; font-weight: bold; width: 20px;">D</span> Drop set</div>
+            <div class="popup-item" onclick="setTag('1', '')"><span style="color: #fff; font-weight: bold; width: 20px;">1.</span> Base set</div>
+            <div class="popup-item popup-delete" onclick="removeCurrentSet()"><i class="fas fa-trash-alt"></i> &nbsp; Remove Set</div>
+            <div class="popup-item popup-cancel" onclick="closePopup()">Cancel</div>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="exercisePopup">
+        <div class="popup-box">
+            <div class="popup-item" style="justify-content: center; color: #fff; font-weight: bold; border-bottom: 2px solid #2a2f3d;">Exercise Options</div>
+            <div class="popup-item popup-delete" onclick="confirmDeleteExercise()"><i class="fas fa-trash-alt"></i> &nbsp; Remove Exercise</div>
+            <div class="popup-item popup-cancel" onclick="closeExercisePopup()">Cancel</div>
+        </div>
+    </div>
+
+    <script>
+        localStorage.setItem('returnPage', '/log-workout'); 
+        
+        let startTime = sessionStorage.getItem('startWorkoutTime');
+        if (!startTime) {
+            startTime = Date.now();
+            sessionStorage.setItem('startWorkoutTime', startTime);
+        }
+
+        function updateTimer() {
+            const now = Date.now();
+            const diff = Math.floor((now - startTime) / 1000); 
+            const h = Math.floor(diff / 3600).toString().padStart(2, '0');
+            const m = Math.floor((diff % 3600) / 60).toString().padStart(2, '0');
+            const s = (diff % 60).toString().padStart(2, '0');
+            document.getElementById('timer').innerText = `${h}:${m}:${s}`;
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer(); 
+
+        const listEl = document.getElementById('exercises-list');
+        const emptyMsg = document.getElementById('empty-msg');
+        let currentSetBtn = null;
+        let currentExerciseIndex = null;
+
+        function loadData() {
+            const data = localStorage.getItem('currentWorkout');
+            listEl.innerHTML = '';
+            if (data) {
+                const exercises = JSON.parse(data);
+                if (exercises.length > 0) {
+                    emptyMsg.style.display = 'none';
+                    exercises.forEach((ex, idx) => createExerciseCard(ex, idx));
+                } else { listEl.appendChild(emptyMsg); emptyMsg.style.display = 'block'; }
+            } else { listEl.appendChild(emptyMsg); emptyMsg.style.display = 'block'; }
+        }
+
+        function createExerciseCard(ex, idx) {
+            const html = `
+                <div class="exercise-card" data-exercise-id="${ex.id}">
+                    <div class="ex-header">
+                        <div class="ex-thumb-small"><img src="${ex.img}"></div>
+                        <div class="ex-title">${ex.name}</div>
+                        <i class="fas fa-ellipsis-v ex-menu-btn" onclick="openExerciseOptions(${idx})"></i>
+                    </div>
+                    <div class="ex-rest-info"><i class="fas fa-stopwatch"></i> 03:00</div>
+                    <div class="sets-container" id="set-container-${idx}">
+                        <div class="sets-header-row"><div>#</div><div>KG</div><div>REPS</div><div><i class="fas fa-check"></i></div></div>
+                        ${createSetHTML(1)}
+                    </div>
+                    <div style="padding: 0 10px;"><button class="btn-add-set" onclick="addNewSet(${idx})">+ ADD SET</button></div>
+                </div>
+            `;
+            listEl.insertAdjacentHTML('beforeend', html);
+        }
+
+        function createSetHTML(num) {
+            return `
+                <div class="set-row">
+                    <div class="set-num-box" onclick="openPopup(this)">${num}</div>
+                    <div><input type="number" class="set-input input-greutate" placeholder="-"></div>
+                    <div><input type="number" class="set-input input-repetari" placeholder="-"></div>
+                    <div class="set-check-box" onclick="toggleDone(this)">
+                        <div class="check-square"><i class="fas fa-check" style="color:#000; font-size:0.8rem;"></i></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // FUNCȚIA REPARATĂ: Adaugă rânduri noi
+        window.addNewSet = function(idx) {
+            const container = document.getElementById(`set-container-${idx}`);
+            const count = container.querySelectorAll('.set-row').length + 1;
+            container.insertAdjacentHTML('beforeend', createSetHTML(count));
+        }
+
+        window.toggleDone = function(el) { 
+            const sq = el.querySelector('.check-square');
+            const row = el.closest('.set-row');
+            
+            // Bifăm sau debifăm căsuța
+            sq.classList.toggle('checked');
+            
+            // Resetăm animația ca să poată fi rulată din nou
+            row.classList.remove('pop-effect');
+            
+            // Dacă tocmai a fost bifată, rulăm doar animația de "Pop!"
+            if(sq.classList.contains('checked')) {
+                void row.offsetWidth; // Truc mic de JS pentru a restarta o animație CSS
+                row.classList.add('pop-effect');
+            }
+        }
+
+        // -------------------------------------------------------------
+        
+        window.openPopup = function(element) { currentSetBtn = element; document.getElementById('tagPopup').style.display = 'flex'; }
+        window.closePopup = function() { document.getElementById('tagPopup').style.display = 'none'; currentSetBtn = null; }
+        window.setTag = function(text, colorClass) {
+            if(currentSetBtn) { currentSetBtn.innerText = text; currentSetBtn.className = 'set-num-box'; if(colorClass) currentSetBtn.classList.add(colorClass); } closePopup();
+        }
+        window.removeCurrentSet = function() {
+            if(currentSetBtn) {
+                const row = currentSetBtn.closest('.set-row'); const container = row.parentElement;
+                if(container.querySelectorAll('.set-row').length <= 1) { alert("Minim 1 serie!"); closePopup(); return; }
+                row.remove();
+                container.querySelectorAll('.set-row').forEach((r, i) => { const n = r.querySelector('.set-num-box'); if(!isNaN(n.innerText)) n.innerText = i + 1; });
+            } closePopup();
+        }
+        window.openExerciseOptions = function(index) { currentExerciseIndex = index; document.getElementById('exercisePopup').style.display = 'flex'; }
+        window.closeExercisePopup = function() { document.getElementById('exercisePopup').style.display = 'none'; currentExerciseIndex = null; }
+        window.confirmDeleteExercise = function() {
+            if (currentExerciseIndex !== null) {
+                let exercises = JSON.parse(localStorage.getItem('currentWorkout')) || [];
+                exercises.splice(currentExerciseIndex, 1);
+                localStorage.setItem('currentWorkout', JSON.stringify(exercises));
+                loadData();
+            } closeExercisePopup();
+        }
+        window.clearAndExit = function() { 
+            if(confirm('Cancel workout?')) { 
+                localStorage.removeItem('currentWorkout'); 
+                sessionStorage.removeItem('startWorkoutTime'); 
+                window.location.href = '/workouts'; 
+            } 
+        }
+
+        loadData();
+
+        window.finishWorkout = function() {
+            let durataText = "00:00";
+            let st = sessionStorage.getItem('startWorkoutTime');
+            if (st) {
+                let ms = Date.now() - parseInt(st);
+                let totalSeconds = Math.floor(ms / 1000);
+                let minute = Math.floor(totalSeconds / 60);
+                let secunde = totalSeconds % 60;
+                durataText = (minute < 10 ? "0" : "") + minute + ":" + (secunde < 10 ? "0" : "") + secunde;
+            }
+
+            localStorage.setItem('workoutDuration', durataText);
+            sessionStorage.removeItem('startWorkoutTime'); 
+
+            let listaSeturiDeTrimis = [];
+            const cardElements = document.querySelectorAll('.exercise-card');
+            
+            cardElements.forEach(card => {
+                let exerciseId = card.getAttribute('data-exercise-id');
+                let exerciseNameElement = card.querySelector('.ex-title');
+                let exerciseName = exerciseNameElement ? exerciseNameElement.innerText : "Necunoscut";
+
+                const rows = card.querySelectorAll('.set-row');
+                rows.forEach(row => {
+                    let inputs = row.querySelectorAll('input');
+                    if(inputs.length >= 2) {
+                        let valoareKG = inputs[0].value;
+                        let valoareReps = inputs[1].value;
+
+                        if(valoareKG && valoareReps) {
+                            listaSeturiDeTrimis.push({
+                                greutate: parseFloat(valoareKG),
+                                repetari: parseInt(valoareReps),
+                                exercitiu: {
+                                    id: (exerciseId && exerciseId !== "undefined" && exerciseId !== "null") ? parseInt(exerciseId) : null,
+                                    nume: exerciseName
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+
+            if(listaSeturiDeTrimis.length === 0) {
+                alert("Nu ai introdus nicio greutate/repetare! Completează tabelul.");
+                return;
+            }
+
+            fetch('/api/save-workout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(listaSeturiDeTrimis)
+            })
+            .then(response => {
+                if(response.ok) return response.text();
+                throw new Error("Eroare server");
+            })
+            .then(htmlPage => {
+                document.open();
+                document.write(htmlPage);
+                document.close();
+                localStorage.removeItem('currentWorkout');
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Eroare la salvare! Verifică consola.");
+            });
+        }
+    </script>
+</body>
+</html>

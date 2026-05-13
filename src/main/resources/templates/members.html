@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Membri - Admin</title>
+</head>
+<body>
+    <h1>Panou Administrator: Lista tuturor utilizatorilor</h1>
+    
+    <table border="1">
+        <tr>
+            <th>Nume</th>
+            <th>Email</th>
+            <th>Rol</th>
+        </tr>
+        <!-- Aici Thymeleaf va afișa fiecare user din baza de date -->
+        <tr th:each="user : ${listaUseri}">
+            <td th:text="${user.nume} + ' ' + ${user.prenume}">Nume complet</td>
+            <td th:text="${user.email}">Email</td>
+            <td th:text="${user.role}">Rol</td>
+        </tr>
+    </table>
+
+    <br>
+    <a href="/dashboard">Înapoi la Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Templates - 21 GYM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body { background-color: #050505; color: #ffffff; font-family: 'Segoe UI', sans-serif; min-height: 100vh; padding-bottom: 50px; }
+        .navbar-custom { background-color: #1a0505; border-bottom: 2px solid #8B0000; padding: 25px 0 !important; min-height: 90px; }
+        .brand-text { font-family: 'Black Ops One'; font-size: 1.5rem; color: #fff; letter-spacing: 2px; }
+        .container-custom { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        .template-card { background-color: #1e2126; border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #333; position: relative; transition: 0.2s; }
+        .template-card:hover { border-color: #555; }
+        .tpl-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .tpl-title { font-family: 'Black Ops One'; font-size: 1.3rem; color: #fff; text-transform: uppercase; }
+        
+        .tpl-delete-btn { color: #666; cursor: pointer; transition: 0.2s; font-size: 1.1rem; text-decoration: none; }
+        .tpl-delete-btn:hover { color: #ff3333; }
+
+        .ai-generated-content h3 { font-size: 1.1rem; color: #ff3333; margin-bottom: 15px; font-family: 'Black Ops One'; }
+        .ai-generated-content ul { list-style: none; padding: 0; margin: 0 0 20px 0; }
+        .ai-generated-content li { color: #ccc; font-size: 0.95rem; margin-bottom: 8px; display: flex; align-items: flex-start; }
+        .ai-generated-content li::before { content: "•"; color: #ff3333; font-size: 1.5rem; margin-right: 10px; line-height: 0.8; }
+        .ai-generated-content strong { color: #fff; margin-right: 5px; }
+
+        .btn-use { display: block; text-align: center; text-decoration: none; width: 100%; background-color: #111; color: #ff3333; font-family: 'Black Ops One'; border: 1px solid #ff3333; padding: 12px; border-radius: 25px; cursor: pointer; transition: 0.2s; text-transform: uppercase; font-size: 1.1rem; margin-top: 15px; }
+        .btn-use:hover { background-color: #ff3333; color: #fff; }
+        .empty-msg { text-align: center; color: #666; margin-top: 50px; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark navbar-custom sticky-top">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div style="width: 80px; padding-left: 10px;">
+                <a href="/workouts" style="text-decoration: none; color: #fff; font-size: 1.5rem;">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+            <span class="brand-text">TEMPLATES</span>
+            <div style="width: 80px;"></div>
+        </div>
+    </nav>
+
+    <div class="container-custom">
+        <div id="templatesListContainer" style="margin-top: 30px;">
+            
+            <div th:if="${#lists.isEmpty(templates)}" class="empty-msg">
+                <p>Niciun template salvat.<br><br>Creează unul nou!</p>
+                <br>
+                <a href="/generator" class="btn-use" style="display: inline-block; width: auto; padding: 10px 30px;">GENEREAZĂ PLAN AI</a>
+            </div>
+
+            <div th:each="template : ${templates}" class="template-card shadow-lg">
+                <div class="tpl-header">
+                    <div class="tpl-title" th:text="${template.nume}">Nume Template</div>
+                    <a th:href="@{/delete-template/{id}(id=${template.id})}" class="tpl-delete-btn" onclick="return confirm('Ești sigur că vrei să ștergi acest template?');">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </div>
+                
+                <div class="ai-generated-content" th:utext="${template.continutHtml}"></div>
+                
+                <button class="btn-use" onclick="folosesteTemplate(this)">FOLOSEȘTE TEMPLATE</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        function folosesteTemplate(btnElement) {
+            btnElement.disabled = true;
+            btnElement.innerText = "SE PREGĂTEȘTE...";
+
+            localStorage.removeItem('workoutStartTime');
+            localStorage.removeItem('workoutTimer');
+            localStorage.removeItem('elapsedTime');
+            localStorage.removeItem('activeWorkout');
+            localStorage.removeItem('workoutState');
+
+            const card = btnElement.closest('.template-card');
+            const listaExercitii = card.querySelectorAll('.ai-generated-content li');
+            
+            // 1. Aducem baza de date REALA din Java în JavaScript
+            const exercitiiDb = /*[[${listaExercitii}]]*/ [];
+            const dictionarDb = {};
+
+            if (exercitiiDb && exercitiiDb.length > 0) {
+                exercitiiDb.forEach(ex => {
+                    if (ex.nume && ex.imagine) {
+                        dictionarDb[ex.nume.toLowerCase().trim()] = {
+                            id: ex.id,                  // ID-UL REAL!
+                            img: "/images/" + ex.imagine // POZA REALĂ!
+                        };
+                    }
+                });
+            }
+
+            let antrenamentPentruLogare = [];
+
+            listaExercitii.forEach((li, index) => {
+                let textComplet = li.innerText.trim(); 
+                
+                // 1. Tăiem textul la cratimă pentru a separa numele de detalii
+                let bucati = textComplet.split(/[-–—]/);
+                let numeBrut = bucati[0].trim(); 
+                let detalii = bucati.length > 1 ? bucati[1].trim() : ""; 
+
+                // 2. Construim titlul pe care îl vrei pe ecran
+                let titluDeAfisat = detalii ? (numeBrut + " | " + detalii) : numeBrut;
+                
+                let numeCautare = numeBrut.toLowerCase(); 
+
+                // 3. Căutare EXACTĂ
+                let matchReal = dictionarDb[numeCautare];
+
+                // 4. SMART SEARCH (dacă AI-ul greșește numele, ex: "barbell squat" -> "squat")
+                if (!matchReal) {
+                    for (let dbNume in dictionarDb) {
+                        if (dbNume.includes(numeCautare) || numeCautare.includes(dbNume)) {
+                            matchReal = dictionarDb[dbNume];
+                            console.log("Corectat AI-ul automat: ", numeCautare, " -> ", dbNume);
+                            break;
+                        }
+                    }
+                }
+
+                // 5. Dacă l-am găsit, îl adăugăm cu titlul lung și UN SINGUR rând gol
+                if (matchReal) {
+                    antrenamentPentruLogare.push({
+                        id: matchReal.id,       // Fără ID-uri inventate! Doar ID real
+                        name: titluDeAfisat,    // AICI PUNEM TEXTUL LUNG ("Nume | 3 serii...")
+                        img: matchReal.img,     
+                        gifUrl: matchReal.img, 
+                        image: matchReal.img,
+                        bodyPart: "AI",
+                        target: "General",
+                        sets: [ { reps: "", weight: "" } ] // Lăsăm 1 singur rând gol implicit
+                    });
+                } else {
+                    console.warn("Exercițiu respins (nu există în BD): ", numeBrut);
+                }
+            });
+
+            if (antrenamentPentruLogare.length === 0) {
+                alert("AI-ul a generat doar exerciții complet necunoscute care nu sunt în baza ta de date! Generează alt plan.");
+                btnElement.disabled = false;
+                btnElement.innerText = "FOLOSEȘTE TEMPLATE";
+                return;
+            }
+
+            // Gata, mergem spre pagina de antrenament!
+            localStorage.setItem('currentWorkout', JSON.stringify(antrenamentPentruLogare));
+            window.location.href = '/log-workout';
+        }
+    </script>
+</body>
+</html>

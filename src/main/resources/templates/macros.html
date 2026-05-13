@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Macro Nutrienți - 21 Gym</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #bfbfbf;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1, h2, h3, h4, .navbar-brand {
+            font-family: 'Black Ops One', cursive !important;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .navbar-custom { background-color: #1a0505; border-bottom: 2px solid #8B0000; width: 100%; }
+        
+        .macro-container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .macro-card {
+            background-color: #141414;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 25px;
+            height: 100%;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .macro-card:hover {
+            border-color: #8B0000;
+            transform: translateY(-5px);
+        }
+
+        .macro-header {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .nutrient-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .val-num { color: #fff; font-weight: bold; }
+        .label-prot { color: #ff3333; }
+        .label-carb { color: #17a2b8; }
+        .label-fat { color: #ffc107; }
+
+        .big-cal {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
+        }
+
+        /* --- STIL PENTRU NOTIFICAREA NOUĂ --- */
+        #notificare-succes {
+            display: none; /* Ascuns la început */
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #28a745; /* Verde */
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            z-index: 9999;
+            animation: slideDown 0.5s ease-out;
+            text-align: center;
+        }
+
+        @keyframes slideDown {
+            from { top: -100px; opacity: 0; }
+            to { top: 30px; opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="notificare-succes">
+        ✅ Planul a fost salvat in profilul tau!
+    </div>
+
+    <nav class="navbar navbar-dark navbar-custom py-3 shadow mb-5">
+        <div class="container">
+            <span class="navbar-brand fs-2">21 <span style="color: #ff3333;">GYM</span></span>
+            <a href="/tdee" class="btn btn-outline-light btn-sm">ÎNAPOI LA CALCULATOR</a>
+        </div>
+    </nav>
+
+    <div class="macro-container">
+        
+        <div class="text-center mb-5">
+            <h4 class="text-secondary">OBIECTIVUL TĂU: <span id="textObiectiv" style="color: #ff3333;" th:text="${tipObiectiv}">SLĂBIRE</span></h4>
+            <h1 id="textCalorii" class="big-cal" th:text="${totalCalorii}">2000</h1>
+            <p>Alege strategia de macronutrienți care ți se potrivește cel mai bine:</p>
+        </div>
+
+        <div class="row g-4">
+            
+            <div class="col-md-4">
+                <div class="macro-card" style="border-top: 4px solid #28a745; cursor: pointer;" 
+                     th:onclick="salveazaPlan('ECHILIBRAT', [[${bal_prot}]], [[${bal_carb}]], [[${bal_gras}]])">
+                    
+                    <div class="macro-header text-center">ECHILIBRAT</div>
+                    <p class="small text-center mb-4" style="color: #888;">Ideal pentru energie și performanță.</p>
+                    
+                    <div class="nutrient-row">
+                        <span class="label-prot">PROTEINE</span>
+                        <span class="val-num"><span th:text="${bal_prot}">150</span>g</span>
+                    </div>
+                    <div class="nutrient-row">
+                        <span class="label-carb">CARBOHIDRAȚI</span>
+                        <span class="val-num"><span th:text="${bal_carb}">250</span>g</span>
+                    </div>
+                    <div class="nutrient-row">
+                        <span class="label-fat">GRĂSIMI</span>
+                        <span class="val-num"><span th:text="${bal_gras}">60</span>g</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="macro-card" style="border-top: 4px solid #ff3333; cursor: pointer;"
+                     th:onclick="salveazaPlan('LOW CARB', [[${low_prot}]], [[${low_carb}]], [[${low_gras}]])">
+                     
+                    <div class="macro-header text-center">LOW CARB</div>
+                    <p class="small text-center mb-4" style="color: #888;">Ideal pentru reducerea retenției de apă.</p>
+                    
+                    <div class="nutrient-row">
+                        <span class="label-prot">PROTEINE</span>
+                        <span class="val-num"><span th:text="${low_prot}">200</span>g</span>
+                    </div>
+                    <div class="nutrient-row">
+                        <span class="label-carb">CARBOHIDRAȚI</span>
+                        <span class="val-num"><span th:text="${low_carb}">100</span>g</span>
+                    </div>
+                    <div class="nutrient-row">
+                        <span class="label-fat">GRĂSIMI</span>
+                        <span class="val-num"><span th:text="${low_gras}">90</span>g</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="macro-card" style="border-top: 4px solid #17a2b8; cursor: pointer;"
+                     th:onclick="salveazaPlan('HIGH PROTEIN', [[${high_prot}]], [[${high_carb}]], [[${high_gras}]])">
+                     
+                    <div class="macro-header text-center">HIGH PROTEIN</div>
+                    <p class="small text-center mb-4" style="color: #888;">Ideal pentru creșterea masei musculare.</p>
+                    
+                    <div class="nutrient-row">
+                        <span class="label-prot">PROTEINE</span>
+                        <span class="val-num"><span th:text="${high_prot}">225</span>g</span>
+                    </div>
+                    <div class="nutrient-row">
+                        <span class="label-carb">CARBOHIDRAȚI</span>
+                        <span class="val-num"><span th:text="${high_carb}">175</span>g</span>
+                    </div>
+                    <div class="nutrient-row">
+                        <span class="label-fat">GRĂSIMI</span>
+                        <span class="val-num"><span th:text="${high_gras}">60</span>g</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function salveazaPlan(strategie, prot, carb, fat) {
+            const caloriiText = document.getElementById('textCalorii').innerText;
+            const obiectivText = document.getElementById('textObiectiv').innerText;
+
+            const data = {
+                calorii: parseInt(caloriiText),
+                obiectiv: obiectivText,
+                strategie: strategie,
+                proteine: parseInt(prot),
+                carbohidrati: parseInt(carb),
+                grasimi: parseInt(fat)
+            };
+
+            fetch('/api/save-nutrition', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(res => {
+                if (res.ok) return res.text();
+                throw new Error("Eroare la salvare");
+            })
+            .then(msg => {
+                // AICI E MODIFICAREA: Nu mai folosim alert(), ci notificarea personalizata
+                const notificare = document.getElementById('notificare-succes');
+                notificare.style.display = 'block';
+
+                // Așteptăm 2 secunde, apoi te trimitem la dashboard
+                setTimeout(() => {
+                    window.location.href = "/dashboard";
+                }, 2000);
+            })
+            .catch(err => {
+                console.error(err);
+                alert("❌ Eroare! Asigură-te că ești logat.");
+            });
+        }
+    </script>
+
+</body>
+</html>

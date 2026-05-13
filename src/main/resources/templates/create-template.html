@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Template - 21 GYM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar-custom { 
+            background-color: #1a0505; 
+            border-bottom: 2px solid #8B0000; 
+            padding-top: 25px !important; 
+            padding-bottom: 25px !important; 
+            min-height: 90px;
+        }
+        .brand-text { font-family: 'Black Ops One', cursive; text-transform: uppercase; font-size: 1.8rem; letter-spacing: 2px; color: #fff; line-height: 1; }
+        .brand-logo-small { text-decoration: none; cursor: pointer; white-space: nowrap; }
+        .brand-logo-small:hover { opacity: 0.8; }
+
+        .centered-container { max-width: 800px; margin: 0 auto; width: 100%; }
+
+        /* --- INPUT NUME TEMPLATE --- */
+        .template-name-input {
+            width: 100%;
+            background-color: #111;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 15px;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            outline: none;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .template-name-input::placeholder { color: #555; }
+        .template-name-input:focus { border-color: #ff3333; }
+
+        /* --- CARDURI EXERCITII --- */
+        .exercise-card { background-color: #000; border-bottom: 1px solid #333; margin-bottom: 5px; padding-bottom: 15px; }
+        .ex-header { display: flex; align-items: center; padding: 15px; background-color: #050505; }
+        .ex-thumb-small { width: 45px; height: 45px; border-radius: 8px; overflow: hidden; margin-right: 15px; border: 1px solid #333; background-color: #000; }
+        .ex-thumb-small img { width: 100%; height: 100%; object-fit: cover; }
+        .ex-title { font-weight: 700; font-size: 1.1rem; color: #fff; flex: 1; }
+        .ex-menu-btn { color: #666; font-size: 1.2rem; cursor: pointer; padding: 10px; }
+        .ex-rest-info { padding-left: 75px; margin-bottom: 10px; font-size: 0.9rem; color: #aaa; display: flex; align-items: center; gap: 5px; font-weight: 600; }
+
+        /* Tabel Serii */
+        .sets-container { padding: 0 10px; }
+        .sets-header-row { display: grid; grid-template-columns: 40px 1fr 1fr 50px; text-align: center; color: #666; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; }
+        .set-row { display: grid; grid-template-columns: 40px 1fr 1fr 50px; align-items: center; margin-bottom: 8px; background-color: #111; border-radius: 8px; min-height: 45px; }
+        .set-num-box { background-color: #222; height: 100%; border-radius: 8px 0 0 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff; cursor: pointer; border-right: 1px solid #333; }
+        .set-input { background: transparent; border: none; color: #fff; text-align: center; font-size: 1.1rem; font-weight: bold; width: 100%; padding: 10px 0; }
+        .set-input::placeholder { color: #444; }
+        .set-input:focus { outline: none; background-color: #1a1a1a; }
+        
+        .set-action-box { height: 100%; display: flex; align-items: center; justify-content: center; cursor: pointer; border-left: 1px solid #333; color: #666; font-size: 1rem; transition: 0.2s; }
+        .set-action-box:hover { color: #ff3333; }
+
+        .btn-add-set { background-color: #1c1c1c; color: #fff; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; margin-top: 5px; text-transform: uppercase; }
+
+        /* Butoane Jos */
+        .bottom-actions { padding: 20px; }
+        .btn-main { width: 100%; padding: 15px; border-radius: 30px; border: none; font-family: 'Black Ops One'; font-size: 1.1rem; text-transform: uppercase; margin-bottom: 15px; }
+        .btn-grey { background-color: #333; color: #fff; }
+        .btn-red { background-color: #ff3333; color: #fff; box-shadow: 0 0 20px rgba(255, 51, 51, 0.4); }
+
+        /* Popup */
+        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; display: none; align-items: center; justify-content: center; }
+        .popup-box { background-color: #1a1e29; width: 280px; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.8); }
+        .popup-item { padding: 15px 20px; border-bottom: 1px solid #2a2f3d; color: #fff; font-size: 1rem; display: flex; align-items: center; gap: 15px; cursor: pointer; }
+        .popup-item:active { background-color: #2a2f3d; }
+        .tag-F { color: #ff3333 !important; } .tag-W { color: #f39c12 !important; } .tag-D { color: #3498db !important; }
+        .popup-delete { color: #ff4d4d; border-top: 2px solid #2a2f3d; justify-content: center; font-weight: bold; }
+        .popup-cancel { border-bottom: none; text-align: center; justify-content: center; color: #aaa; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark navbar-custom sticky-top">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            
+            <div style="width: 100px; display: flex; align-items: center;">
+                <a href="/workouts" class="brand-logo-small">
+                    <span style="font-family: 'Black Ops One'; font-size: 1.4rem; color: #fff;">21</span>
+                    <span style="font-family: 'Black Ops One'; font-size: 1.4rem; color: #ff3333; margin-left: 5px;">GYM</span>
+                </a>
+            </div>
+            
+            <span class="brand-text">NEW TEMPLATE</span>
+            
+            <div style="width: 100px;"></div>
+        </div>
+    </nav>
+
+    <div class="centered-container">
+        
+        <div style="padding: 20px 20px 0 20px;">
+            <input type="text" id="templateName" class="template-name-input" placeholder="Template Name (e.g. Chest Day)">
+        </div>
+
+        <div id="exercises-list">
+            <p id="empty-msg" class="text-center mt-5" style="color: #666; font-size: 1.1rem;">
+                No exercises added yet.
+            </p>
+        </div>
+
+        <div class="bottom-actions">
+            <button class="btn-main btn-grey" onclick="goToAddExercise()">ADD EXERCISES MANUALLY</button>
+            
+            <button class="btn-main btn-red" onclick="saveTemplate()">SAVE TEMPLATE</button>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="tagPopup">
+        <div class="popup-box">
+            <div class="popup-item" onclick="setTag('F', 'tag-F')"><span style="color: #ff3333; font-weight: bold; width: 20px;">F</span> To failure</div>
+            <div class="popup-item" onclick="setTag('W', 'tag-W')"><span style="color: #f39c12; font-weight: bold; width: 20px;">W</span> Warm-up</div>
+            <div class="popup-item" onclick="setTag('D', 'tag-D')"><span style="color: #3498db; font-weight: bold; width: 20px;">D</span> Drop set</div>
+            <div class="popup-item" onclick="setTag('1', '')"><span style="color: #fff; font-weight: bold; width: 20px;">1.</span> Base set</div>
+            <div class="popup-item popup-delete" onclick="removeCurrentSet()"><i class="fas fa-trash-alt"></i> &nbsp; Remove Set</div>
+            <div class="popup-item popup-cancel" onclick="closePopup()">Cancel</div>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="exercisePopup">
+        <div class="popup-box">
+            <div class="popup-item" style="justify-content: center; color: #fff; font-weight: bold; border-bottom: 2px solid #2a2f3d;">Exercise Options</div>
+            <div class="popup-item popup-delete" onclick="confirmDeleteExercise()"><i class="fas fa-trash-alt"></i> &nbsp; Remove Exercise</div>
+            <div class="popup-item popup-cancel" onclick="closeExercisePopup()">Cancel</div>
+        </div>
+    </div>
+
+    <!-- Scriptul este acum th:inline pentru a prelua variabile din Java -->
+    <script th:inline="javascript">
+        // ============================================
+        // LOGICA CREATE TEMPLATE
+        // ============================================
+        
+        // Preluăm adresa de email a userului curent din backend
+        const currentUserEmail = /*[[${userEmail}]]*/ 'default';
+        const storageKey = 'myTemplates_' + currentUserEmail; // Cheia unică pentru a nu se mai amesteca datele
+        
+        // 1. SETAM ADRESA DE RETUR
+        localStorage.setItem('returnPage', '/create-template');
+
+        const listEl = document.getElementById('exercises-list');
+        const emptyMsg = document.getElementById('empty-msg');
+        let currentSetBtn = null;
+        let currentExerciseIndex = null;
+
+        function loadData() {
+            // A. Restauram lista de exercitii din memoria temporara a antrenamentului curent
+            const data = localStorage.getItem('currentWorkout');
+            listEl.innerHTML = '';
+            if (data) {
+                const exercises = JSON.parse(data);
+                if (exercises.length > 0) {
+                    emptyMsg.style.display = 'none';
+                    exercises.forEach((ex, idx) => createExerciseCard(ex, idx));
+                } else { listEl.appendChild(emptyMsg); emptyMsg.style.display = 'block'; }
+            } else { listEl.appendChild(emptyMsg); emptyMsg.style.display = 'block'; }
+
+            // B. Restauram numele template-ului
+            const savedName = localStorage.getItem('tempTemplateName');
+            if (savedName) {
+                document.getElementById('templateName').value = savedName;
+            }
+        }
+
+        window.goToAddExercise = function() {
+            // Luam ce ai scris
+            const name = document.getElementById('templateName').value;
+            // Salvam in memorie
+            localStorage.setItem('tempTemplateName', name);
+            // Plecam spre pagina de adaugare
+            window.location.href = '/add-exercise';
+        }
+
+        function createExerciseCard(ex, idx) {
+            const filename = ex.img.substring(ex.img.lastIndexOf('/') + 1, ex.img.lastIndexOf('.'));
+            const gifPath = `/images/gifs/${filename}.gif`;
+
+            const html = `
+                <div class="exercise-card">
+                    <div class="ex-header">
+                        <div class="ex-thumb-small">
+                            <img src="${gifPath}" onerror="this.onerror=null; this.src='${ex.img}';" alt="${ex.name}">
+                        </div>
+                        <div class="ex-title">${ex.name}</div>
+                        <i class="fas fa-ellipsis-v ex-menu-btn" onclick="openExerciseOptions(${idx})"></i>
+                    </div>
+                    <div class="ex-rest-info">Target Sets & Reps</div>
+                    <div class="sets-container" id="set-container-${idx}">
+                        <div class="sets-header-row"><div>#</div><div>KG</div><div>REPS</div><div><i class="fas fa-trash"></i></div></div>
+                        ${createSetHTML(1)}
+                    </div>
+                    <div style="padding: 0 10px;"><button class="btn-add-set" onclick="addNewSet(${idx})">+ ADD SET</button></div>
+                </div>
+            `;
+            listEl.insertAdjacentHTML('beforeend', html);
+        }
+
+        function createSetHTML(num) {
+            return `
+                <div class="set-row">
+                    <div class="set-num-box" onclick="openPopup(this)">${num}</div>
+                    <div><input type="number" class="set-input" placeholder="-"></div>
+                    <div><input type="number" class="set-input" placeholder="-"></div>
+                    <div class="set-action-box" onclick="deleteSetDirectly(this)"><i class="fas fa-times"></i></div>
+                </div>
+            `;
+        }
+
+        window.addNewSet = function(idx) {
+            const container = document.getElementById(`set-container-${idx}`);
+            const count = container.querySelectorAll('.set-row').length + 1;
+            container.insertAdjacentHTML('beforeend', createSetHTML(count));
+        }
+
+        window.deleteSetDirectly = function(btn) {
+            const row = btn.closest('.set-row');
+            const container = row.parentElement;
+            if(container.querySelectorAll('.set-row').length <= 1) return;
+            row.remove();
+            container.querySelectorAll('.set-row').forEach((r, i) => { 
+                const n = r.querySelector('.set-num-box'); 
+                if(!isNaN(n.innerText)) n.innerText = i + 1; 
+            });
+        }
+
+        window.openPopup = function(element) { currentSetBtn = element; document.getElementById('tagPopup').style.display = 'flex'; }
+        window.closePopup = function() { document.getElementById('tagPopup').style.display = 'none'; currentSetBtn = null; }
+        window.setTag = function(text, colorClass) {
+            if(currentSetBtn) { currentSetBtn.innerText = text; currentSetBtn.className = 'set-num-box'; if(colorClass) currentSetBtn.classList.add(colorClass); } closePopup();
+        }
+        window.removeCurrentSet = function() {
+           if(currentSetBtn) {
+               const row = currentSetBtn.closest('.set-row');
+               const deleteBtn = row.querySelector('.set-action-box');
+               if(deleteBtn) deleteSetDirectly(deleteBtn);
+            }
+            closePopup();
+        }
+        window.openExerciseOptions = function(index) { currentExerciseIndex = index; document.getElementById('exercisePopup').style.display = 'flex'; }
+        window.closeExercisePopup = function() { document.getElementById('exercisePopup').style.display = 'none'; currentExerciseIndex = null; }
+        window.confirmDeleteExercise = function() {
+            if (currentExerciseIndex !== null) {
+                let exercises = JSON.parse(localStorage.getItem('currentWorkout')) || [];
+                exercises.splice(currentExerciseIndex, 1);
+                localStorage.setItem('currentWorkout', JSON.stringify(exercises));
+                loadData();
+            } closeExercisePopup();
+        }
+
+        // --- SALVARE TEMPLATE CĂTRE BAZA DE DATE ---
+        // --- SALVARE TEMPLATE CĂTRE BAZA DE DATE ---
+        window.saveTemplate = function() {
+            const name = document.getElementById('templateName').value.trim();
+            if(!name) { 
+                alert("Te rog să introduci un nume pentru template (ex: Ziua 1 - Piept)!"); 
+                return; 
+            }
+            
+            const cardElements = document.querySelectorAll('.exercise-card');
+            if(cardElements.length === 0) { 
+                alert("Adaugă cel puțin un exercițiu!"); 
+                return; 
+            }
+
+            // Construim HTML-ul DOAR cu numele exercițiului, fără serii și repetări!
+            let continutHtml = "<h3>" + name + "</h3><ul>";
+
+            cardElements.forEach(card => {
+                let exName = card.querySelector('.ex-title').innerText.trim();
+                
+                // Punem simplu doar titlul exercițiului cu acel bullet-point (<li>)
+                continutHtml += `<li><strong>${exName}</strong></li>`;
+            });
+            
+            continutHtml += "</ul>";
+
+            const payload = {
+                nume: name,
+                continutHtml: continutHtml
+            };
+
+            // Trimitem pachetul către ușa din Java
+            fetch('/api/save-manual-template', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if(response.ok) {
+                    localStorage.removeItem('currentWorkout');
+                    localStorage.removeItem('tempTemplateName');
+                    window.location.href = '/my-templates'; 
+                } else {
+                    alert("Eroare la salvarea în baza de date.");
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Eroare de conexiune cu serverul.");
+            });
+        }
+
+        loadData();
+    </script>
+</body>
+</html>

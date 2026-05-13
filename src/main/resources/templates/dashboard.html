@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>21 Gym - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, .btn, .navbar-brand {
+            font-family: 'Black Ops One', cursive !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .navbar-custom {
+            background-color: #1a0505;
+            border-bottom: 2px solid #8B0000;
+        }
+
+        .card-menu {
+            background-color: #141414;
+            border: 1px solid #333;
+            border-top: 5px solid #8B0000;
+            height: 100%;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .card-menu:hover {
+            transform: translateY(-5px);
+            background-color: #1a1a1a;
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+            border-top-color: #ff0000;
+        }
+
+        .icon-box { font-size: 3rem; color: #ff3333; margin-bottom: 20px; }
+        .page-title { font-size: 3.5rem; }
+        a.text-decoration-none { color: inherit; }
+
+        .nutrition-bar {
+            background-color: #141414;
+            border: 1px solid #333;
+            border-left: 5px solid #ff3333;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .macro-stat {
+            text-align: center;
+            border-right: 1px solid #333;
+        }
+        .macro-stat:last-child { border-right: none; }
+        
+        .macro-val { font-family: 'Black Ops One'; font-size: 1.5rem; }
+        
+        .macro-lbl { 
+            font-size: 0.8rem; 
+            color: #d1d1d1; 
+            letter-spacing: 1px; 
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        /* --- STIL BUTON PLUTITOR AI --- */
+        .beginner-help {
+            position: fixed;
+            top: 120px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .ai-bubble {
+            background: linear-gradient(90deg, #8B0000 0%, #ff3333 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px 50px 50px 50px;
+            box-shadow: 0 10px 20px rgba(255, 51, 51, 0.3);
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .ai-bubble:hover {
+            transform: translateY(-5px) scale(1.05);
+            color: white;
+            box-shadow: 0 15px 30px rgba(255, 51, 51, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom py-3 shadow">
+        <div class="container">
+            <a class="navbar-brand fs-2" href="/home" style="color: #ff3333; text-shadow: 2px 2px 0px #000;">
+                21 <span style="color: white;">GYM</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        
+        <div class="text-center mb-5">
+            <h1 class="page-title">PANOU DE <span style="color: #ff3333;">CONTROL</span></h1>
+            <p class="lead text-secondary">Alege o secțiune pentru a continua.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <a href="/profile" class="text-decoration-none">
+                    <div class="card card-menu p-5 text-center shadow-lg">
+                        <div class="icon-box">👤</div>
+                        <h4>PROFILUL MEU</h4>
+                        <p class="text-secondary small mt-3">Date personale și setări.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/workouts" class="text-decoration-none">
+                    <div class="card card-menu p-5 text-center shadow-lg">
+                        <div class="icon-box">💪</div>
+                        <h4>ANTRENAMENTE</h4>
+                        <p class="text-secondary small mt-3">Jurnal și programe.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/tdee" class="text-decoration-none">
+                    <div class="card card-menu p-5 text-center shadow-lg">
+                        <div class="icon-box">🔥</div> <h4>CALCULATOR TDEE</h4>
+                        <p class="text-secondary small mt-3">Calculează necesarul caloric.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="nutrition-bar" th:if="${user != null and user.tintaCalorii != null}">
+            <div class="row align-items-center">
+                <div class="col-md-3 text-center text-md-start mb-3 mb-md-0">
+                    <h5 class="mb-0 text-white" style="font-family: 'Black Ops One';">PLAN ACTIV</h5>
+                    <span class="badge bg-danger mt-2" th:text="${user.obiectivNutritie}">SLĂBIRE</span>
+                    <span class="badge bg-secondary mt-2" th:text="${user.strategieMacro}">ECHILIBRAT</span>
+                </div>
+
+                <div class="col-md-3 text-center mb-3 mb-md-0 border-end border-secondary border-opacity-25">
+                    <h2 class="mb-0" style="color: #ff3333; font-size: 2.5rem;" th:text="${user.tintaCalorii}">2500</h2>
+                    <small style="color: #d1d1d1; font-weight: 600; letter-spacing: 1px;">KCAL ZILNIC</small>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-4 macro-stat">
+                            <div class="macro-val text-danger" th:text="${user.tintaProteine}">0</div>
+                            <div class="macro-lbl">PROT (g)</div>
+                        </div>
+                        <div class="col-4 macro-stat">
+                            <div class="macro-val text-info" th:text="${user.tintaCarbohidrati}">0</div>
+                            <div class="macro-lbl">CARB (g)</div>
+                        </div>
+                        <div class="col-4 macro-stat">
+                            <div class="macro-val text-warning" th:text="${user.tintaGrasimi}">0</div>
+                            <div class="macro-lbl">GRAS (g)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-3 border-top border-secondary pt-2 border-opacity-25">
+                <a href="/tdee" class="btn btn-sm btn-outline-light" style="font-size: 0.7rem;">RECALCULEAZĂ PLANUL</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BUTON PLUTITOR PENTRU ÎNCEPĂTORI -->
+    <div class="beginner-help">
+        <a href="/generator" class="ai-bubble">
+            <i style="font-family: 'Black Ops One'; font-style: normal; font-size: 1.5rem; margin-right: 10px;">?</i>
+            <span style="font-weight: bold; font-size: 0.85rem; line-height: 1.2;">
+                EȘTI ÎNCEPĂTOR?<br>
+                <small style="font-size: 0.7rem; opacity: 0.9;">Apasă pentru plan AI</small>
+            </span>
+        </a>
+    </div>
+
+</body>
+</html>

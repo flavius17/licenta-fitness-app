@@ -1,0 +1,1190 @@
+[
+  {
+    "nume": "Abductor",
+    "imagine": "gif/legs/abductor.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes"
+  },
+  {
+    "nume": "Adductor",
+    "imagine": "gif/legs/adductor.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Hamstrings"
+  },
+  {
+    "nume": "Cable hip abduction(toe in)",
+    "imagine": "gif/legs/cable hip abduction(toe in).gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes"
+  },
+  {
+    "nume": "Cable hip abduction(toe out)",
+    "imagine": "gif/legs/cable hip abduction(toe out).gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes"
+  },
+  {
+    "nume": "Cable hip adduction",
+    "imagine": "gif/legs/cable hip adduction.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Hamstrings"
+  },
+  {
+    "nume": "Cable hip adduction",
+    "imagine": "gif/legs/cable hip adduction.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Hamstrings"
+  },
+  {
+    "nume": "Lever abduction squat",
+    "imagine": "gif/legs/lever abduction squat.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Hamstrings, Glutes"
+  },
+  {
+    "nume": "Bicycle crunch",
+    "imagine": "gif/chest&waist/Bicycle crunch.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Abs"
+  },
+  {
+    "nume": "Cable twist",
+    "imagine": "gif/chest&waist/Cable twist.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Abs"
+  },
+  {
+    "nume": "Elbow to knee side crunch",
+    "imagine": "gif/chest&waist/Elbow to knee side crunch.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Abs"
+  },
+  {
+    "nume": "Hip roll plank",
+    "imagine": "gif/chest&waist/Hip roll plank.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Abs"
+  },
+  {
+    "nume": "Knee raise",
+    "imagine": "gif/chest&waist/Knee raise.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Abs"
+  },
+  {
+    "nume": "Lever crunch",
+    "imagine": "gif/chest&waist/Lever crunch.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Abs"
+  },
+  {
+    "nume": "Lying leg-hip raise",
+    "imagine": "gif/chest&waist/Lying leg-hip raise.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Abs"
+  },
+  {
+    "nume": "Scissors",
+    "imagine": "gif/chest&waist/Scissors.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Abs"
+  },
+  {
+    "nume": "Seated in out leg raise on floor",
+    "imagine": "gif/chest&waist/Seated in out leg raise on floor.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Abs"
+  },
+  {
+    "nume": "Side plank oblique crunch",
+    "imagine": "gif/chest&waist/Side plank oblique crunch.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Abs"
+  },
+  {
+    "nume": "Side plank",
+    "imagine": "gif/chest&waist/Side plank.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Abs"
+  },
+  {
+    "nume": "Sit-up",
+    "imagine": "gif/chest&waist/Sit-up.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Abs"
+  },
+  {
+    "nume": "Weighted crunch",
+    "imagine": "gif/chest&waist/Weighted crunch.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Abs"
+  },
+  {
+    "nume": "Assisted pull-up",
+    "imagine": "gif/back/Assisted pull-up.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats"
+  },
+  {
+    "nume": "Band kneeling one arm pulldown",
+    "imagine": "gif/back/Band kneeling one arm pulldown.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats"
+  },
+  {
+    "nume": "Band one arm twisting seated row",
+    "imagine": "gif/back/Band one arm twisting seated row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats, UB"
+  },
+  {
+    "nume": "Barbell bent over row",
+    "imagine": "gif/back/Barbell bent over row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "UB"
+  },
+  {
+    "nume": "Cable bar lateral pulldown",
+    "imagine": "gif/back/Cable bar lateral pulldown.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats"
+  },
+  {
+    "nume": "Cable cross-over lateral pulldown",
+    "imagine": "gif/back/Cable cross-over lateral pulldown.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats"
+  },
+  {
+    "nume": "Cable decline seated wide-grip row",
+    "imagine": "gif/back/Cable decline seated wide-grip row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "UB"
+  },
+  {
+    "nume": "Cable lying extension pullover",
+    "imagine": "gif/back/Cable lying extension pullover.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats"
+  },
+  {
+    "nume": "Cable seated row",
+    "imagine": "gif/back/Cable seated row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats, UB"
+  },
+  {
+    "nume": "Cable seated wide-grip row",
+    "imagine": "gif/back/Cable seated wide-grip row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats, UB"
+  },
+  {
+    "nume": "Cable straight back seated row",
+    "imagine": "gif/back/Cable straight back seated row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats, UB"
+  },
+  {
+    "nume": "Cable rope seated row",
+    "imagine": "gif/back/Cablw rope seated row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats, UB"
+  },
+  {
+    "nume": "Dumbbell bent over row",
+    "imagine": "gif/back/Dumbbell bent over row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "UB"
+  },
+  {
+    "nume": "Dumbbell one arm bent over row",
+    "imagine": "gif/back/Dumbbell one arm bent over row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats"
+  },
+  {
+    "nume": "Hyperetension",
+    "imagine": "gif/back/Hyperedtension.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Spine"
+  },
+  {
+    "nume": "Lever alternating narrow grip seated row",
+    "imagine": "gif/back/Lever alternating narrow grip seated row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats"
+  },
+  {
+    "nume": "Lever front pulldown",
+    "imagine": "gif/back/Lever front pulldown.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats"
+  },
+  {
+    "nume": "Lever narrow grip seated row",
+    "imagine": "gif/back/Lever narrow grip seated row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "UB"
+  },
+  {
+    "nume": "Lever one arm lateral high row",
+    "imagine": "gif/back/Lever one arm lateral high row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats"
+  },
+  {
+    "nume": "Lever pulldown",
+    "imagine": "gif/back/Lever pulldown.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Lats"
+  },
+  {
+    "nume": "Lever t-bar row",
+    "imagine": "gif/back/Lever t-bar row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "UB"
+  },
+  {
+    "nume": "Lever seated row",
+    "imagine": "gif/back/Lwvwr seated row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "UB"
+  },
+  {
+    "nume": "Smith row",
+    "imagine": "gif/back/Smith row.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "UB"
+  },
+  {
+    "nume": "Barbell curl",
+    "imagine": "gif/arms/Barbell curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Barbell drag curl",
+    "imagine": "gif/arms/Barbell drag curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Barbell reverse curl",
+    "imagine": "gif/arms/Barbell reverse curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps, Forearms"
+  },
+  {
+    "nume": "Barbell standing close grip curl",
+    "imagine": "gif/arms/Barbell standing close grip curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Bayesian curl",
+    "imagine": "gif/arms/Bayesian curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Cable close grip curl",
+    "imagine": "gif/arms/Cable close grip curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Cable curl",
+    "imagine": "gif/arms/Cable curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Cable drag curl",
+    "imagine": "gif/arms/Cable drag curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Cable hammer curl(with rope)",
+    "imagine": "gif/arms/Cable hammer curl(with rope).gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Cable reverse curl",
+    "imagine": "gif/arms/Cable reverse curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps, Forearms"
+  },
+  {
+    "nume": "Cable squatting curl",
+    "imagine": "gif/arms/Cable squatting curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Cable standing inner curl",
+    "imagine": "gif/arms/Cable standing inner curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell alternate biceps curl",
+    "imagine": "gif/arms/Dumbell alternate biceps curl1.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell biceps curl",
+    "imagine": "gif/arms/Dumbell biceps curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell close grip curl",
+    "imagine": "gif/arms/Dumbell close grip curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell concentration curl",
+    "imagine": "gif/arms/Dumbell concentration curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell cross body hammer curl",
+    "imagine": "gif/arms/Dumbell cross body hammer curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell hammer curl",
+    "imagine": "gif/arms/Dumbell hammer curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell high curl",
+    "imagine": "gif/arms/Dumbell high curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell incline biceps curl",
+    "imagine": "gif/arms/Dumbell incline biceps curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell incline curl",
+    "imagine": "gif/arms/Dumbell incline curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell incline hammer curl",
+    "imagine": "gif/arms/Dumbell incline hammer curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell one arm standing curl",
+    "imagine": "gif/arms/Dumbell one arm standing curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell one arm zottman preacher curl",
+    "imagine": "gif/arms/Dumbell one arm zottman preacher curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell prone incline curl",
+    "imagine": "gif/arms/Dumbell prone incline curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell reverse spider curl",
+    "imagine": "gif/arms/Dumbell reverse spider curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps, Forearms"
+  },
+  {
+    "nume": "Dumbell seated bicep curl",
+    "imagine": "gif/arms/Dumbell seated bicep curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell seated curl",
+    "imagine": "gif/arms/Dumbell seated curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell seated hammer curl",
+    "imagine": "gif/arms/Dumbell seated hammer curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell standing one arm concentration curl",
+    "imagine": "gif/arms/Dumbell standing one arm concentration curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell standing preacher curl",
+    "imagine": "gif/arms/Dumbell standing preacher curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbell standing reverse curl",
+    "imagine": "gif/arms/Dumbell standing reverse curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps, Forearms"
+  },
+  {
+    "nume": "Ez barbell close-grip curl",
+    "imagine": "gif/arms/Ez barbell close-grip curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Ez barbell close-grip preacher curl",
+    "imagine": "gif/arms/Ez barbell close-grip preacher curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Ez barbell curl",
+    "imagine": "gif/arms/Ez barbell curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Ez barbell spider curl",
+    "imagine": "gif/arms/Ez barbell spider curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Ez barbell standing preacher curl",
+    "imagine": "gif/arms/Ez barbell standing preacher curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Lever biceps curl",
+    "imagine": "gif/arms/Lever biceps curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Lever hammer grip preacher curl",
+    "imagine": "gif/arms/Lever hammer grip preacher curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Lever preacher curl",
+    "imagine": "gif/arms/Lever preacher curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Biceps"
+  },
+  {
+    "nume": "Dumbbell standing calf raise",
+    "imagine": "gif/legs/Dumbbell standing calf raise.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Calves"
+  },
+  {
+    "nume": "Lever calf press",
+    "imagine": "gif/legs/Lever calf press.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Calves"
+  },
+  {
+    "nume": "Lever donkey calf raise",
+    "imagine": "gif/legs/Lever donkey calf raise.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Calves"
+  },
+  {
+    "nume": "Lever rotary calf",
+    "imagine": "gif/legs/Lever rotary calf.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Calves"
+  },
+  {
+    "nume": "Lever seated calf raise",
+    "imagine": "gif/legs/Lever seated calf raise.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Calves"
+  },
+  {
+    "nume": "Lever standing calf raise",
+    "imagine": "gif/legs/Lever standing calf raise.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Calves"
+  },
+  {
+    "nume": "Sled calf press on leg press",
+    "imagine": "gif/legs/Sled calf press on leg press.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Calves"
+  },
+  {
+    "nume": "Smith standing leg calf raise",
+    "imagine": "gif/legs/Smith standing leg calf raise.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Calves"
+  },
+  {
+    "nume": "Assisted chest dip",
+    "imagine": "gif/chest&waist/Assisted chest dip.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Barbel chest press",
+    "imagine": "gif/chest&waist/Barbel chest press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Barbell incline chest press",
+    "imagine": "gif/chest&waist/Barbell incline chest press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Burbell decline chest press",
+    "imagine": "gif/chest&waist/Burbell decline chest press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Cable bench fly",
+    "imagine": "gif/chest&waist/Cable bench fly.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Cable decline fly",
+    "imagine": "gif/chest&waist/Cable decline fly.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Cable incline bench press",
+    "imagine": "gif/chest&waist/Cable incline bench press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Cable middle fly",
+    "imagine": "gif/chest&waist/Cable middle fly.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Dumbbell chest press",
+    "imagine": "gif/chest&waist/Dumbbell chest press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Dumbbell fly",
+    "imagine": "gif/chest&waist/Dumbbell fly.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Dumbbell incline bech press",
+    "imagine": "gif/chest&waist/Dumbbell incline bech press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Dumbbell incline fly",
+    "imagine": "gif/chest&waist/Dumbbell incline fly.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Dumbbell squeeze bench press",
+    "imagine": "gif/chest&waist/Dumbbell squeeze bench press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Lever chesr press",
+    "imagine": "gif/chest&waist/Lever chesr press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Lever decline chest press",
+    "imagine": "gif/chest&waist/Lever decline chest press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Lever incline chest press",
+    "imagine": "gif/chest&waist/Lever incline chest press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Lever peck deck fly",
+    "imagine": "gif/chest&waist/Lever peck deck fly.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Lever seated fly",
+    "imagine": "gif/chest&waist/Lever seated fly.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Smith bench press",
+    "imagine": "gif/chest&waist/Smith bench press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Smith decline bench press",
+    "imagine": "gif/chest&waist/Smith decline bench press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Smith incline bench press",
+    "imagine": "gif/chest&waist/Smith incline bench press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Chest"
+  },
+  {
+    "nume": "Barbell revers wrist curl",
+    "imagine": "gif/arms/Barbell revers wrist curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Forearms"
+  },
+  {
+    "nume": "Barbell standing back wrist curl",
+    "imagine": "gif/arms/Barbell standing back wrist curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Forearms"
+  },
+  {
+    "nume": "Barbell wrist curl",
+    "imagine": "gif/arms/Barbell wrist curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Forearms"
+  },
+  {
+    "nume": "Dumbbell over bench revers wrist curl",
+    "imagine": "gif/arms/Dumbbell over bench revers wrist curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Forearms"
+  },
+  {
+    "nume": "Dumbbell over bench wrist curl",
+    "imagine": "gif/arms/Dumbbell over bench wrist curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Forearms"
+  },
+  {
+    "nume": "Dumbell over bench onw arm wrist curl",
+    "imagine": "gif/arms/Dumbell over bench onw arm wrist curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Forearms"
+  },
+  {
+    "nume": "Dumbell seated palms up wrist curl",
+    "imagine": "gif/arms/Dumbell seated palms up wrist curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Forearms"
+  },
+  {
+    "nume": "Dumbwll one arm revers wrist curl",
+    "imagine": "gif/arms/Dumbwll one arm revers wrist curl.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Forearms"
+  },
+  {
+    "nume": "Barbell deadlift",
+    "imagine": "gif/legs/Barbell deadlift.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes"
+  },
+  {
+    "nume": "Barbell deadlift",
+    "imagine": "gif/legs/Barbell deadlift.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes, Quads"
+  },
+  {
+    "nume": "Barbell hip thrust",
+    "imagine": "gif/legs/Barbell hip thrust.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes"
+  },
+  {
+    "nume": "Barbell romanian deadlift",
+    "imagine": "gif/legs/Barbell romanian deadlift.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes, Hamstrings"
+  },
+  {
+    "nume": "Diagonal kickback",
+    "imagine": "gif/legs/Diagonal kickback.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes"
+  },
+  {
+    "nume": "Dumbbell hip thrust",
+    "imagine": "gif/legs/Dumbbell hip thrust.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes"
+  },
+  {
+    "nume": "Dumbbell single leg deadlift with wall support",
+    "imagine": "gif/legs/Dumbbell single leg deadlift with wall support.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes"
+  },
+  {
+    "nume": "Dumbbell staggered stance romanian deadlift",
+    "imagine": "gif/legs/Dumbbell staggered stance romanian deadlift.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes"
+  },
+  {
+    "nume": "Dumbbell sumo pull through",
+    "imagine": "gif/legs/Dumbbell sumo pull through.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes, Hamstrings"
+  },
+  {
+    "nume": "Kickbacks",
+    "imagine": "gif/legs/Kickbacks.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes"
+  },
+  {
+    "nume": "Lever belt squat",
+    "imagine": "gif/legs/Lever belt squat.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes, Quads"
+  },
+  {
+    "nume": "Lever hip extension",
+    "imagine": "gif/legs/Lever hip extension.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes, Hamstrings"
+  },
+  {
+    "nume": "Lever reverse hyperextension",
+    "imagine": "gif/legs/Lever reverse hyperextension.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes, Hamstrings"
+  },
+  {
+    "nume": "Medius kickback",
+    "imagine": "gif/legs/Medius kickback.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes"
+  },
+  {
+    "nume": "Smith one leg deadlift",
+    "imagine": "gif/legs/Smith one leg deadlift.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes"
+  },
+  {
+    "nume": "Smith rear lunge",
+    "imagine": "gif/legs/Smith rear lunge.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Glutes, Quads"
+  },
+  {
+    "nume": "Barbell good morning",
+    "imagine": "gif/legs/Barbell good morning.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Hamstrings"
+  },
+  {
+    "nume": "Barbell straight leg deadlift",
+    "imagine": "gif/legs/Barbell straight leg deadlift.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Hamstrings"
+  },
+  {
+    "nume": "Dumbbell lying curl",
+    "imagine": "gif/legs/Dumbbell lying curl.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Hamstrings"
+  },
+  {
+    "nume": "Lever kneeling leg curl",
+    "imagine": "gif/legs/Lever kneeling leg curl.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Hamstrings"
+  },
+  {
+    "nume": "Lever lying leg curl",
+    "imagine": "gif/legs/Lever lying leg curl.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Hamstrings"
+  },
+  {
+    "nume": "Lever seated leg curl",
+    "imagine": "gif/legs/Lever seated leg curl.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Hamstrings"
+  },
+  {
+    "nume": "Bulgarian split squat",
+    "imagine": "gif/legs/Bulgarian split squat.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Quads"
+  },
+  {
+    "nume": "Dumbbell goblet squat",
+    "imagine": "gif/legs/Dumbbell goblet squat.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Quads"
+  },
+  {
+    "nume": "Hack squat",
+    "imagine": "gif/legs/Hack squat.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Quads"
+  },
+  {
+    "nume": "Leg press",
+    "imagine": "gif/legs/Leg press.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Quads"
+  },
+  {
+    "nume": "Lever leg extension",
+    "imagine": "gif/legs/Lever leg extension.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Quads"
+  },
+  {
+    "nume": "Lever seated leg press",
+    "imagine": "gif/legs/Lever seated leg press.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Quads"
+  },
+  {
+    "nume": "Smith chair squat",
+    "imagine": "gif/legs/Smith chair squat.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Quads"
+  },
+  {
+    "nume": "Split squat",
+    "imagine": "gif/legs/Split squat.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Quads"
+  },
+  {
+    "nume": "Squat",
+    "imagine": "gif/legs/Squat.gif",
+    "grupaMare": "Picioare",
+    "muschiSpecific": "Quads"
+  },
+  {
+    "nume": "Barbell incline shoulder raise",
+    "imagine": "gif/chest&waist/Barbell incline shoulder raise.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Serratus"
+  },
+  {
+    "nume": "Dumbbell incline shoulder raisw",
+    "imagine": "gif/chest&waist/Dumbbell incline shoulder raisw.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Serratus"
+  },
+  {
+    "nume": "Incline scapula pushdown",
+    "imagine": "gif/chest&waist/Incline scapula pushdown.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Serratus"
+  },
+  {
+    "nume": "Kettlebell angled press",
+    "imagine": "gif/chest&waist/Kettlebell angled press.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Serratus"
+  },
+  {
+    "nume": "Serratus wall slide",
+    "imagine": "gif/chest&waist/Serratus wall slide.gif",
+    "grupaMare": "Piept",
+    "muschiSpecific": "Serratus"
+  },
+  {
+    "nume": "Barbell front raise",
+    "imagine": "gif/shoulders/Barbell front raise.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Barbell standing military press",
+    "imagine": "gif/shoulders/Barbell standing military press.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Bent over rear delt cable fly",
+    "imagine": "gif/shoulders/Bent over rear delt cable fly.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Cable forward raise",
+    "imagine": "gif/shoulders/Cable forward raise.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Cable front raise",
+    "imagine": "gif/shoulders/Cable front raise.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Cable lateral raise",
+    "imagine": "gif/shoulders/Cable lateral raise.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Cable one arm lateral raise",
+    "imagine": "gif/shoulders/Cable one arm lateral raise.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Cable standing cross-over high reverse fly",
+    "imagine": "gif/shoulders/Cable standing cross-over high reverse fly.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Cable standing rear delt row",
+    "imagine": "gif/shoulders/Cable standing rear delt row.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Dumbbell arnold press",
+    "imagine": "gif/shoulders/Dumbbell arnold press.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Dumbbell seated front raise",
+    "imagine": "gif/shoulders/Dumbbell seated front raisw.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Dumbbell seated lateral raise",
+    "imagine": "gif/shoulders/Dumbbell seated lateral raise.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Face pull",
+    "imagine": "gif/shoulders/Face pull.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Lever lateral raise",
+    "imagine": "gif/shoulders/Lever lateral raise.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Lever seated reverse fly",
+    "imagine": "gif/shoulders/Lever seated reverse fly.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Lever shoulder press",
+    "imagine": "gif/shoulders/Lever shoulder press.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Smith seated shoulder press",
+    "imagine": "gif/shoulders/Smith seated shoulder press.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Delts"
+  },
+  {
+    "nume": "Cable shrug",
+    "imagine": "gif/shoulders/Cable shrug.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Traps"
+  },
+  {
+    "nume": "Dumbbell decline shrug",
+    "imagine": "gif/shoulders/Dumbbell decline shrug.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Traps"
+  },
+  {
+    "nume": "Dumbbell shurg",
+    "imagine": "gif/shoulders/Dumbbell shurg.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Traps"
+  },
+  {
+    "nume": "Lever shrug",
+    "imagine": "gif/shoulders/Lever shrug.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Traps"
+  },
+  {
+    "nume": "Lever gripless shrug",
+    "imagine": "gif/shoulders/Levwr gripless shrug.gif",
+    "grupaMare": "Umeri",
+    "muschiSpecific": "Traps"
+  },
+  {
+    "nume": "Assisted triceps dip",
+    "imagine": "gif/arms/Assisted triceps dip.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Barbell close-grip bench press",
+    "imagine": "gif/arms/Barbell close-grip bench press.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Burble lying triceps extension skull crusher",
+    "imagine": "gif/arms/Burble lying triceps extension skull crusher.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Cable incline tricep extension",
+    "imagine": "gif/arms/Cable incline tricep extension.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Cable overhead triceps extension(rope)",
+    "imagine": "gif/arms/Cable overhead triceps extension(rope).gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Cable pushdown(bar)",
+    "imagine": "gif/arms/Cable pushdown(bar).gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Cable pushdown",
+    "imagine": "gif/arms/Cable pushdown.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Cable rope high pulley overhead tricep extension",
+    "imagine": "gif/arms/Cable rope high pulley overhead tricep extension.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Cable standing one arm tricep extension",
+    "imagine": "gif/arms/Cable standing one arm tricep extension.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Cable pushdown(v-bar)",
+    "imagine": "gif/arms/Cablw pushdown(v-bar).gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Dumbbell kickbacks",
+    "imagine": "gif/arms/Dumbbell kickbacks.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Dumbbell prone triceps kickbacks",
+    "imagine": "gif/arms/Dumbbell prone triceps kickbacks.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Dumbbell standing triceps extension",
+    "imagine": "gif/arms/Dumbbell standing triceps extension.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Jm press",
+    "imagine": "gif/arms/Jm press.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Lever seated dip",
+    "imagine": "gif/arms/Lever seated dip.gif",
+    "grupaMare": "Brate",
+    "muschiSpecific": "Triceps"
+  },
+  {
+    "nume": "Dumbbell staggered stance romanian deadlift",
+    "imagine": "gif/legs/Dumbbell staggered stance romanian deadlift.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Spine"
+  },
+  {
+    "nume": "Dumbbell sumo pull through",
+    "imagine": "gif/legs/Dumbbell sumo pull through.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Spine"
+  },
+  {
+    "nume": "Dumbbell sumo pull through",
+    "imagine": "gif/legs/Dumbbell sumo pull through.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Spine"
+  },
+  {
+    "nume": "Smith one leg deadlift",
+    "imagine": "gif/legs/Smith one leg deadlift.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Spine"
+  },
+  {
+    "nume": "Barbell straight leg deadlift",
+    "imagine": "gif/legs/Barbell straight leg deadlift.gif",
+    "grupaMare": "Spate",
+    "muschiSpecific": "Spine"
+  }
+]

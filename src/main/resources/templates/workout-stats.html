@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Stats - 21 GYM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body { background-color: #050505; color: #ffffff; font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; overflow: hidden;}
+
+        /* NAVBAR STANDARD */
+        .navbar-custom { background-color: #1a0505; border-bottom: 2px solid #8B0000; padding: 25px 0 !important; min-height: 90px; }
+        .brand-text { font-family: 'Black Ops One'; font-size: 1.5rem; color: #fff; letter-spacing: 2px; }
+
+        .header-msg { text-align: center; padding: 30px 20px 10px 20px; font-family: 'Black Ops One'; font-size: 1.5rem; letter-spacing: 1px; }
+        
+        .stats-title { 
+            color: #ff3333; /* Rosu */
+            font-size: 1.3rem; 
+            font-weight: bold; 
+            padding: 0 20px; 
+            margin-bottom: 15px; 
+            text-transform: uppercase;
+            font-family: 'Black Ops One', cursive;
+        }
+
+        /* GRID */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; max-width: 800px; margin: 0 auto; width: 100%; }
+        .stat-card {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border-radius: 20px; padding: 20px; position: relative; border: 1px solid #222;
+        }
+        .card-red { border-top: 3px solid #ff3333; }
+        .card-blue { border-top: 3px solid #3498db; }
+        .card-cyan { border-top: 3px solid #00e5ff; }
+        .card-gold { border-top: 3px solid #ffd700; background: linear-gradient(145deg, #222, #111); }
+
+        .stat-val { font-size: 1.4rem; font-weight: bold; color: #fff; }
+        .stat-label { font-size: 0.85rem; color: #888; margin-top: 5px; }
+        .stat-icon { position: absolute; bottom: 15px; right: 15px; font-size: 1.8rem; opacity: 0.2; }
+
+        /* BUTON FIX DREAPTA JOS (RED & SMALL) */
+        .btn-corner-finish {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #ff3333;
+            color: #fff;
+            font-family: 'Black Ops One', cursive;
+            font-size: 1rem;
+            padding: 12px 25px;
+            border-radius: 50px;
+            border: none;
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.6);
+            z-index: 1000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s;
+        }
+        .btn-corner-finish:hover {
+            transform: scale(1.1);
+            background-color: #e60000;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark navbar-custom sticky-top">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            
+            <div style="width: 100px; padding-left: 10px; display: flex; align-items: center;">
+                <span style="font-family: 'Black Ops One'; font-size: 1.4rem; color: #fff;">21</span>
+                <span style="font-family: 'Black Ops One'; font-size: 1.4rem; color: #ff3333; margin-left: 5px;">GYM</span>
+            </div>
+            
+            <span class="brand-text">STATS</span>
+            
+            <div style="width: 100px;"></div>
+        </div>
+    </nav>
+
+    <div class="header-msg">Workout completed!</div>
+    
+    <div class="stats-title">Stats</div>
+
+    <div class="stats-grid">
+        <div class="stat-card card-red">
+            <div class="stat-val"><span th:text="${totalVolum}">0</span> kg</div>
+            <div class="stat-label">Total volume</div>
+            <i class="fas fa-dumbbell stat-icon" style="color: #ff3333;"></i>
+        </div>
+
+        <div class="stat-card card-blue">
+            <div class="stat-val" id="totalTime">00:00</div>
+            <div class="stat-label">Duration</div>
+            <i class="fas fa-clock stat-icon" style="color: #3498db;"></i>
+        </div>
+
+        <div class="stat-card card-cyan">
+            <div class="stat-val" th:text="${totalReps}">0</div>
+            <div class="stat-label">Reps sum</div>
+            <i class="fas fa-redo stat-icon" style="color: #00e5ff;"></i>
+        </div>
+
+        <div class="stat-card card-gold">
+            <div class="stat-val" th:text="${personalRecords}">0</div>
+            <div class="stat-label">Personal records</div>
+            <i class="fas fa-trophy stat-icon" style="color: #ffd700;"></i>
+        </div>
+    </div>
+
+    <button class="btn-corner-finish" onclick="goHome()">
+        Start New Workout <i class="fas fa-arrow-right ms-2"></i>
+    </button>
+
+    <script>
+        // 1. CONFETTI
+        function launchConfetti() {
+            var duration = 3000; var end = Date.now() + duration;
+            (function frame() {
+                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0, y: 1 }, colors: ['#ff3333', '#3498db', '#ffffff'] });
+                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1, y: 1 }, colors: ['#ff3333', '#3498db', '#ffffff'] });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            }());
+        }
+        launchConfetti();
+
+        // 2. TIMPUL (Durata)
+        // Luăm timpul salvat de pagina anterioară (log-workout)
+        const duration = localStorage.getItem('workoutDuration') || "00:00";
+        document.getElementById('totalTime').innerText = duration;
+
+        // 3. HOME BUTTON / CLEANUP
+        function goHome() {
+            // Curățăm memoria browserului pentru următorul antrenament
+            localStorage.removeItem('currentWorkout');
+            localStorage.removeItem('workoutDuration');
+            localStorage.removeItem('completedWorkoutData');
+            
+            // Te trimite înapoi la pagina de start antrenament
+            window.location.href = '/workouts'; 
+        }
+    </script>
+</body>
+</html>

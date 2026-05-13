@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Finish Workout - 21 GYM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body { background-color: #050505; color: #ffffff; font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; }
+        
+        /* NAVBAR STANDARD */
+        .navbar-custom { background-color: #1a0505; border-bottom: 2px solid #8B0000; padding: 25px 0 !important; min-height: 90px; }
+        .brand-text { font-family: 'Black Ops One'; font-size: 1.5rem; color: #fff; letter-spacing: 2px; }
+        
+        /* FORMULAR */
+        .form-container { padding: 30px 20px; flex: 1; max-width: 600px; margin: 0 auto; width: 100%; }
+        
+        /* MODIFICARE: CULOARE ROSIE PENTRU TITLU */
+        .section-title { 
+            color: #ff3333; /* Era albastru, acum e rosu */
+            font-size: 1.2rem; 
+            font-weight: bold; 
+            margin-bottom: 15px; 
+            text-transform: uppercase;
+            font-family: 'Black Ops One', cursive; /* Optional: fontul militar */
+        }
+        
+        .custom-input {
+            background-color: #1a1a1a; border: 1px solid #333; color: #fff;
+            width: 100%; padding: 15px; border-radius: 12px; margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        .custom-input:focus { outline: none; border-color: #ff3333; }
+        
+        .duration-display { font-size: 1.1rem; color: #aaa; margin-bottom: 30px; display: flex; align-items: center; gap: 10px; }
+        
+        .btn-save {
+            width: 100%; padding: 15px; border-radius: 30px; border: none;
+            background-color: #ff3333; color: #fff; font-family: 'Black Ops One'; 
+            font-size: 1.2rem; text-transform: uppercase; margin-top: auto;
+            box-shadow: 0 0 15px #8B0000;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark navbar-custom sticky-top">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            
+            <div style="width: 100px; padding-left: 10px; display: flex; align-items: center;">
+                <a href="/log-workout" style="text-decoration: none; white-space: nowrap;">
+                    <span style="font-family: 'Black Ops One'; font-size: 1.4rem; color: #fff;">21</span>
+                    <span style="font-family: 'Black Ops One'; font-size: 1.4rem; color: #ff3333; margin-left: 5px;">GYM</span>
+                </a>
+            </div>
+            
+            <span class="brand-text">FINISH</span>
+            
+            <div style="width: 100px;"></div>
+        </div>
+    </nav>
+
+    <div class="form-container d-flex flex-column">
+        <div class="section-title">Workout info</div>
+        
+        <label style="color: #888; margin-bottom: 5px;">Workout name</label>
+        <input type="text" class="custom-input" id="wName" placeholder="e.g. Legs, Chest day">
+        
+        <label style="color: #888; margin-bottom: 5px;">Note</label>
+        <textarea class="custom-input" id="wNote" rows="4" placeholder="How did it feel?"></textarea>
+        
+        <div class="duration-display">
+            Duration: <span id="finalDuration" style="color: #fff; font-weight: bold;">00:00:00</span>
+        </div>
+
+        <button class="btn-save mt-auto" onclick="goToStats()">SAVE</button>
+    </div>
+
+    <script>
+        const duration = localStorage.getItem('workoutDuration') || "00:00:00";
+        document.getElementById('finalDuration').innerText = duration;
+
+        const date = new Date();
+        const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        document.getElementById('wName').value = `${days[date.getDay()]} Workout`;
+
+        function goToStats() {
+            window.location.href = '/workout-stats';
+        }
+    </script>
+</body>
+</html>
