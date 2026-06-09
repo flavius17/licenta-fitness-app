@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
-public class GeminiService {
+public class GroqService {
 
     @Value("${ai.api.key}")
     private String apiKey;
@@ -23,7 +23,7 @@ public class GeminiService {
         RestTemplate restTemplate = new RestTemplate();
 
         // Noul prompt inteligent care forțează AI-ul să gândească logic seriile, repetările și zilele
-        String prompt = "Ești un antrenor personal expert care se bazeaza strict cum sa alcatuiasca un plan de antrenament pe science-based lifters. Profilul clientului: " + profilUtilizator + 
+        String prompt = "Ești un antrenor personal expert care se bazeaza strict cum sa alcatuiasca un plan de antrenament pe science-based lifters. Profilul clientului: " + profilUtilizator +
                 ". Alege exerciții potrivite STRICT din această listă: " + listaExercitiiJson + ". " +
                 "\nINSTRUCȚIUNI LOGICE PENTRU TINE: " +
                 "1. Împarte logic grupele musculare în funcție de numărul de zile cerute în profil (ex: 2 zile = Full Body, 3 zile = Push/Pull/Legs, 4 zile = Upper/Lower etc). " +
@@ -40,12 +40,12 @@ public class GeminiService {
 
         // Formatul de date cerut de Groq
         Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("model", "llama-3.1-8b-instant"); // Modelul actualizat și funcțional
-        
+        requestBody.put("model", "llama-3.1-8b-instant");
+
         Map<String, String> message = new HashMap<>();
         message.put("role", "user");
         message.put("content", prompt);
-        
+
         requestBody.put("messages", List.of(message));
         requestBody.put("temperature", 0.7);
 
@@ -59,13 +59,13 @@ public class GeminiService {
         try {
             // Trimitem pachetul
             Map<String, Object> response = restTemplate.postForObject(apiUrl, entity, Map.class);
-            
+
             // Extragem răspunsul din JSON-ul primit
             List choices = (List) response.get("choices");
             Map firstChoice = (Map) choices.get(0);
             Map messageObj = (Map) firstChoice.get("message");
             return (String) messageObj.get("content");
-            
+
         } catch (Exception e) {
             System.out.println("Eroare API Groq: " + e.getMessage());
             return "<div class='text-center mt-5' style='color: white;'>" +

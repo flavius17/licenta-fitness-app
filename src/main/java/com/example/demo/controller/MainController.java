@@ -10,7 +10,7 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.WorkoutSetRepository;
 import com.example.demo.service.WorkoutService;
 import com.example.demo.service.EmailService;
-import com.example.demo.service.GeminiService; // IMPORT NOU
+import com.example.demo.service.GroqService;
 import com.example.demo.service.QuoteService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -57,7 +57,7 @@ public class MainController {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private GeminiService geminiService; // INJECTARE NOUĂ
+    private GroqService groqService;
 
     @Autowired
     private PlanTemplateRepository templateRepository;
@@ -432,7 +432,7 @@ public class MainController {
                 .toList();
         
         // 4. Apelăm serviciul AI
-        String planGenerat = geminiService.genereazaPlan(profil, numeExercitii.toString());
+        String planGenerat = groqService.genereazaPlan(profil, numeExercitii.toString());
         
         // 5. Trimitem rezultatul către pagina de vizualizare
         model.addAttribute("planAI", planGenerat);
