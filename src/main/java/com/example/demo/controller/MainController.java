@@ -448,7 +448,7 @@ public class MainController {
         System.out.println("--- AM PRIMIT CEREREA DE SALVARE ---");
 
         String email = getEmailFromPrincipal(principal);
-        User currentUser = userRepository.findByEmail(email);
+        User currentUser = userRepository.findByEmail(email).orElse(null);
 
         try {
             String[] zile = planHtml.split("<h3>");
@@ -495,7 +495,7 @@ public class MainController {
         String continutHtml = payload.get("continutHtml");
 
         String email = getEmailFromPrincipal(principal);
-        User currentUser = userRepository.findByEmail(email);
+        User currentUser = userRepository.findByEmail(email).orElse(null);
 
         PlanTemplate template = new PlanTemplate();
         template.setNume(nume);
@@ -510,7 +510,7 @@ public class MainController {
     @GetMapping("/my-templates")
     public String viewTemplates(Model model, Principal principal) {
         String email = getEmailFromPrincipal(principal);
-        User currentUser = userRepository.findByEmail(email);
+        User currentUser = userRepository.findByEmail(email).orElse(null);
         model.addAttribute("templates", templateRepository.findByUser(currentUser));
         model.addAttribute("listaExercitii", exercitiuRepository.findAll());
         return "my-templates";
