@@ -84,7 +84,7 @@
             box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
         }
 
-        /* Stil pentru iconita ochiului */
+        
         .password-container {
             position: relative;
         }
@@ -98,7 +98,7 @@
             font-size: 1.2rem;
         }
         .toggle-password:hover {
-            color: #ff3333; /* Se face rosie cand pui mouse-ul pe ea */
+            color: #ff3333; 
         }
 
     </style>
@@ -163,13 +163,13 @@
         const campParola = document.querySelector('#campParola');
 
         butonOchi.addEventListener('click', function () {
-            // 1. Verificam ce tip este acum (password sau text)
+            
             const type = campParola.getAttribute('type') === 'password' ? 'text' : 'password';
             
-            // 2. Schimbam tipul
+            
             campParola.setAttribute('type', type);
             
-            // 3. Schimbam iconita (ochi deschis / ochi taiat)
+            
             this.classList.toggle('bi-eye');
             this.classList.toggle('bi-eye-slash');
         });

@@ -13,7 +13,7 @@
             <th>Email</th>
             <th>Rol</th>
         </tr>
-        <!-- Aici Thymeleaf va afișa fiecare user din baza de date -->
+        
         <tr th:each="user : ${listaUseri}">
             <td th:text="${user.nume} + ' ' + ${user.prenume}">Nume complet</td>
             <td th:text="${user.email}">Email</td>

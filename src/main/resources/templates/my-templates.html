@@ -114,7 +114,7 @@
 
                 let matchReal = dictionarDb[numeCautare];
 
-                // 4. SMART SEARCH (dacă AI-ul greșește numele, ex: "barbell squat" -> "squat")
+                
                 if (!matchReal) {
                     for (let dbNume in dictionarDb) {
                         if (dbNume.includes(numeCautare) || numeCautare.includes(dbNume)) {
@@ -128,13 +128,13 @@
                 if (matchReal) {
                     antrenamentPentruLogare.push({
                         id: matchReal.id,
-                        name: titluDeAfisat,    // AICI PUNEM TEXTUL LUNG ("Nume | 3 serii...")
+                        name: titluDeAfisat,    
                         img: matchReal.img,     
                         gifUrl: matchReal.img, 
                         image: matchReal.img,
                         bodyPart: "AI",
                         target: "General",
-                        sets: [ { reps: "", weight: "" } ] // Lăsăm 1 singur rând gol implicit
+                        sets: [ { reps: "", weight: "" } ] 
                     });
                 } else {
                     console.warn("Exercițiu respins (nu există în BD): ", numeBrut);

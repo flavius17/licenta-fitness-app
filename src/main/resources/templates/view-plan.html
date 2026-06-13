@@ -39,20 +39,20 @@
                 <h1 class="mb-4" style="font-family: 'Black Ops One'; text-align: center;">ANTRENAMENTUL TĂU <span class="red-text">PERSONALIZAT</span></h1>
                 
                 <div class="plan-container shadow-lg">
-                    <!-- th:utext permite afișarea HTML-ului generat de AI fără a-l "scăpa" ca text simplu -->
+                    
                     <div class="ai-output" th:utext="${planAI}"></div>
                 </div>
 
                 <div class="d-flex justify-content-center mb-5">
-                    <!-- Butonul de regenerează -->
+                    
                     <a href="/generator" class="btn btn-outline-red px-5 py-2 me-3">REGENEREAZĂ</a>
                     
-                    <!-- Noul formular pentru Salvare ca Template -->
+                    
                     <form th:action="@{/save-template}" method="POST">
-                        <!-- Ascundem codul HTML ca să îl trimitem la server -->
+                        
                         <input type="hidden" name="planHtml" th:value="${planAI}">
                         
-                        <!-- Dăm un nume generic (pe care îl putem afișa în baza de date) -->
+                        
                         <input type="hidden" name="numeTemplate" value="Antrenament AI Personalizat">
                         
                         <button type="submit" class="btn btn-danger px-5 py-2">SALVEAZĂ CA TEMPLATE</button>

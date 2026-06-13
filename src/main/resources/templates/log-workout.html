@@ -211,7 +211,7 @@
             `;
         }
 
-        // FUNCȚIA REPARATĂ: Adaugă rânduri noi
+        
         window.addNewSet = function(idx) {
             const container = document.getElementById(`set-container-${idx}`);
             const count = container.querySelectorAll('.set-row').length + 1;
@@ -222,19 +222,19 @@
             const sq = el.querySelector('.check-square');
             const row = el.closest('.set-row');
             
-            // Bifăm sau debifăm căsuța
+            
             sq.classList.toggle('checked');
             
-            // Resetăm animația ca să poată fi rulată din nou
+            
             row.classList.remove('pop-effect');
             
             if(sq.classList.contains('checked')) {
-                void row.offsetWidth; // Truc mic de JS pentru a restarta o animație CSS
+                void row.offsetWidth; 
                 row.classList.add('pop-effect');
             }
         }
 
-        // -------------------------------------------------------------
+        
         
         window.openPopup = function(element) { currentSetBtn = element; document.getElementById('tagPopup').style.display = 'flex'; }
         window.closePopup = function() { document.getElementById('tagPopup').style.display = 'none'; currentSetBtn = null; }

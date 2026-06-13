@@ -76,7 +76,7 @@
             box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
         }
 
-        /* Stil pentru butonul Google */
+        
         .btn-google {
             background-color: #1a1a1a;
             color: white;
@@ -92,7 +92,7 @@
             box-shadow: 0 0 15px rgba(234, 67, 53, 0.4);
         }
 
-        /* Container pentru parola si ochi */
+        
         .password-container { 
             position: relative; 
         }
@@ -100,7 +100,7 @@
         .toggle-password {
             position: absolute;
             right: 15px;
-            top: 42px; /* Ajustat pentru pozitionare corecta */
+            top: 42px; 
             cursor: pointer;
             color: #cccccc;
             font-size: 1.3rem;
@@ -108,7 +108,7 @@
         }
         .toggle-password:hover { color: #ff3333; }
 
-        /* Stil pentru mesajul de eroare */
+        
         .alert-error {
             background-color: #330000;
             color: #ff6666;
@@ -169,7 +169,7 @@
                         <button type="submit" class="btn btn-rosu w-100">INTRĂ ÎN CONT</button>
                     </form>
 
-                    <!-- SECTIUNEA PENTRU GOOGLE OAUTH2 -->
+                    
                     <div class="mt-4">
                         <div class="d-flex align-items-center mb-3">
                             <hr class="flex-grow-1" style="border-color: #555;">
@@ -181,7 +181,7 @@
                             <i class="bi bi-google me-2" style="color: #ea4335;"></i> LOGIN CU GOOGLE
                         </a>
                     </div>
-                    <!-- SFARSIT SECTIUNE GOOGLE -->
+                    
                     
                 </div>
                 
@@ -201,11 +201,11 @@
 
         if(butonOchi && campParola) {
             butonOchi.addEventListener('click', function () {
-                // Comuta intre text si password
+                
                 const type = campParola.getAttribute('type') === 'password' ? 'text' : 'password';
                 campParola.setAttribute('type', type);
                 
-                // Schimba iconita
+                
                 this.classList.toggle('bi-eye');
                 this.classList.toggle('bi-eye-slash');
             });

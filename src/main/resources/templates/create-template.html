@@ -16,7 +16,7 @@
             padding-bottom: 80px;
         }
 
-        /* --- NAVBAR --- */
+        
         .navbar-custom { 
             background-color: #1a0505; 
             border-bottom: 2px solid #8B0000; 
@@ -30,7 +30,7 @@
 
         .centered-container { max-width: 800px; margin: 0 auto; width: 100%; }
 
-        /* --- INPUT NUME TEMPLATE --- */
+        
         .template-name-input {
             width: 100%;
             background-color: #111;
@@ -46,7 +46,7 @@
         .template-name-input::placeholder { color: #555; }
         .template-name-input:focus { border-color: #ff3333; }
 
-        /* --- CARDURI EXERCITII --- */
+        
         .exercise-card { background-color: #000; border-bottom: 1px solid #333; margin-bottom: 5px; padding-bottom: 15px; }
         .ex-header { display: flex; align-items: center; padding: 15px; background-color: #050505; }
         .ex-thumb-small { width: 45px; height: 45px; border-radius: 8px; overflow: hidden; margin-right: 15px; border: 1px solid #333; background-color: #000; }
@@ -141,17 +141,14 @@
         </div>
     </div>
 
-    <!-- Scriptul este acum th:inline pentru a prelua variabile din Java -->
+    
     <script th:inline="javascript">
-        // ============================================
-        // LOGICA CREATE TEMPLATE
-        // ============================================
         
-        // Preluăm adresa de email a userului curent din backend
+        
         const currentUserEmail = /*[[${userEmail}]]*/ 'default';
-        const storageKey = 'myTemplates_' + currentUserEmail; // Cheia unică pentru a nu se mai amesteca datele
+        const storageKey = 'myTemplates_' + currentUserEmail; 
         
-        // 1. SETAM ADRESA DE RETUR
+        
         localStorage.setItem('returnPage', '/create-template');
 
         const listEl = document.getElementById('exercises-list');
@@ -160,7 +157,7 @@
         let currentExerciseIndex = null;
 
         function loadData() {
-            // A. Restauram lista de exercitii din memoria temporara a antrenamentului curent
+            
             const data = localStorage.getItem('currentWorkout');
             listEl.innerHTML = '';
             if (data) {
@@ -171,7 +168,7 @@
                 } else { listEl.appendChild(emptyMsg); emptyMsg.style.display = 'block'; }
             } else { listEl.appendChild(emptyMsg); emptyMsg.style.display = 'block'; }
 
-            // B. Restauram numele template-ului
+            
             const savedName = localStorage.getItem('tempTemplateName');
             if (savedName) {
                 document.getElementById('templateName').value = savedName;
@@ -179,11 +176,11 @@
         }
 
         window.goToAddExercise = function() {
-            // Luam ce ai scris
+            
             const name = document.getElementById('templateName').value;
-            // Salvam in memorie
+            
             localStorage.setItem('tempTemplateName', name);
-            // Plecam spre pagina de adaugare
+            
             window.location.href = '/add-exercise';
         }
 
@@ -263,8 +260,7 @@
             } closeExercisePopup();
         }
 
-        // --- SALVARE TEMPLATE CĂTRE BAZA DE DATE ---
-        // --- SALVARE TEMPLATE CĂTRE BAZA DE DATE ---
+        
         window.saveTemplate = function() {
             const name = document.getElementById('templateName').value.trim();
             if(!name) { 
@@ -283,7 +279,7 @@
             cardElements.forEach(card => {
                 let exName = card.querySelector('.ex-title').innerText.trim();
                 
-                // Punem simplu doar titlul exercițiului cu acel bullet-point (<li>)
+                
                 continutHtml += `<li><strong>${exName}</strong></li>`;
             });
             
@@ -294,7 +290,7 @@
                 continutHtml: continutHtml
             };
 
-            // Trimitem pachetul către ușa din Java
+            
             fetch('/api/save-manual-template', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

@@ -11,14 +11,14 @@
     <style>
         body { background-color: #050505; color: #ffffff; font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; overflow: hidden;}
 
-        /* NAVBAR STANDARD */
+        
         .navbar-custom { background-color: #1a0505; border-bottom: 2px solid #8B0000; padding: 25px 0 !important; min-height: 90px; }
         .brand-text { font-family: 'Black Ops One'; font-size: 1.5rem; color: #fff; letter-spacing: 2px; }
 
         .header-msg { text-align: center; padding: 30px 20px 10px 20px; font-family: 'Black Ops One'; font-size: 1.5rem; letter-spacing: 1px; }
         
         .stats-title { 
-            color: #ff3333; /* Rosu */
+            color: #ff3333; 
             font-size: 1.3rem; 
             font-weight: bold; 
             padding: 0 20px; 
@@ -27,7 +27,7 @@
             font-family: 'Black Ops One', cursive;
         }
 
-        /* GRID */
+        
         .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; max-width: 800px; margin: 0 auto; width: 100%; }
         .stat-card {
             background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
@@ -42,7 +42,7 @@
         .stat-label { font-size: 0.85rem; color: #888; margin-top: 5px; }
         .stat-icon { position: absolute; bottom: 15px; right: 15px; font-size: 1.8rem; opacity: 0.2; }
 
-        /* BUTON FIX DREAPTA JOS (RED & SMALL) */
+        
         .btn-corner-finish {
             position: fixed;
             bottom: 30px;
@@ -118,7 +118,7 @@
     </button>
 
     <script>
-        // 1. CONFETTI
+        
         function launchConfetti() {
             var duration = 3000; var end = Date.now() + duration;
             (function frame() {
@@ -129,19 +129,18 @@
         }
         launchConfetti();
 
-        // 2. TIMPUL (Durata)
-        // Luăm timpul salvat de pagina anterioară (log-workout)
+        
         const duration = localStorage.getItem('workoutDuration') || "00:00";
         document.getElementById('totalTime').innerText = duration;
 
-        // 3. HOME BUTTON / CLEANUP
+        
         function goHome() {
-            // Curățăm memoria browserului pentru următorul antrenament
+            
             localStorage.removeItem('currentWorkout');
             localStorage.removeItem('workoutDuration');
             localStorage.removeItem('completedWorkoutData');
             
-            // Te trimite înapoi la pagina de start antrenament
+            
             window.location.href = '/workouts'; 
         }
     </script>

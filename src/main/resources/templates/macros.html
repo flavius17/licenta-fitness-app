@@ -76,14 +76,14 @@
             text-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
         }
 
-        /* --- STIL PENTRU NOTIFICAREA NOUĂ --- */
+        
         #notificare-succes {
-            display: none; /* Ascuns la început */
+            display: none; 
             position: fixed;
             top: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #28a745; /* Verde */
+            background-color: #28a745;
             color: white;
             padding: 15px 40px;
             border-radius: 50px;
@@ -217,11 +217,11 @@
                 throw new Error("Eroare la salvare");
             })
             .then(msg => {
-                // AICI E MODIFICAREA: Nu mai folosim alert(), ci notificarea personalizata
+                
                 const notificare = document.getElementById('notificare-succes');
                 notificare.style.display = 'block';
 
-                // Așteptăm 2 secunde, apoi te trimitem la dashboard
+                
                 setTimeout(() => {
                     window.location.href = "/dashboard";
                 }, 2000);
