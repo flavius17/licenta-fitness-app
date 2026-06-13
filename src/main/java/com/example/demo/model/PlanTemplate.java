@@ -16,6 +16,10 @@ public class PlanTemplate {
     @Column(columnDefinition = "LONGTEXT")
     private String continutHtml;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     // Constructori, Getteri și Setteri
     public PlanTemplate() {}
 
@@ -27,4 +31,7 @@ public class PlanTemplate {
 
     public String getContinutHtml() { return continutHtml; }
     public void setContinutHtml(String continutHtml) { this.continutHtml = continutHtml; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }

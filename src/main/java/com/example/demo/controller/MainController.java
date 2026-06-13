@@ -34,7 +34,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.Principal;
-import java.time.LocalDateTime; 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -262,7 +263,7 @@ public class MainController {
 
         double volumTotal = 0;
         int totalRepetari = 0;
-        LocalDateTime timpulSesiunii = LocalDateTime.now().withNano(0);
+        LocalDateTime timpulSesiunii = LocalDateTime.now(ZoneId.of("Europe/Bucharest")).withNano(0);
 
         for (WorkoutSet set : seturi) {
             set.setUser(user);
@@ -440,71 +441,78 @@ public class MainController {
     }
 
     @PostMapping("/save-template")
-    public String saveTemplate(@RequestParam("planHtml") String planHtml, 
-                               @RequestParam("numeTemplate") String numeTemplate) {
-        
+    public String saveTemplate(@RequestParam("planHtml") String planHtml,
+                               @RequestParam("numeTemplate") String numeTemplate,
+                               Principal principal) {
+
         System.out.println("--- AM PRIMIT CEREREA DE SALVARE ---");
-        
+
+        String email = getEmailFromPrincipal(principal);
+        User currentUser = userRepository.findByEmail(email);
+
         try {
-            // Tăiem codul HTML generat de AI în bucăți, folosind tag-ul <h3>
             String[] zile = planHtml.split("<h3>");
             System.out.println("Am tăiat textul în " + (zile.length - 1) + " bucăți.");
-            
+
             for (int i = 1; i < zile.length; i++) {
                 String continutZi = "<h3>" + zile[i];
-                String titluZi = "Ziua " + i; 
-                
+                String titluZi = "Ziua " + i;
+
                 try {
                     int endTag = continutZi.indexOf("</h3>");
                     if (endTag != -1) {
-                        titluZi = continutZi.substring(4, endTag); 
+                        titluZi = continutZi.substring(4, endTag);
                     }
                 } catch (Exception e) {
                     System.out.println("Nu am putut extrage titlul exact, folosesc default.");
                 }
-                
+
                 PlanTemplate template = new PlanTemplate();
                 template.setNume(numeTemplate + " - " + titluZi);
                 template.setContinutHtml(continutZi);
-                
-                // Salvăm în baza de date
+                template.setUser(currentUser);
+
                 System.out.println("Încerc să salvez în baza de date: " + titluZi);
                 templateRepository.save(template);
                 System.out.println("Salvat cu succes: " + titluZi);
             }
-            
+
             System.out.println("--- SALVARE COMPLETĂ! REDIRECȚIONEZ... ---");
             return "redirect:/my-templates";
-            
+
         } catch (Exception e) {
             System.out.println("!!! EROARE CRITICĂ LA SALVARE !!! " + e.getMessage());
             e.printStackTrace();
-            return "redirect:/my-templates"; // Chiar dacă dă eroare, îl forțăm să nu se mai încarce la infinit
+            return "redirect:/my-templates";
         }
     }
 
     @PostMapping("/api/save-manual-template")
     @ResponseBody
-    public ResponseEntity<String> saveManualTemplate(@RequestBody java.util.Map<String, String> payload) {
+    public ResponseEntity<String> saveManualTemplate(@RequestBody java.util.Map<String, String> payload,
+                                                     Principal principal) {
         String nume = payload.get("nume");
         String continutHtml = payload.get("continutHtml");
 
-        // Creăm template-ul exact ca la AI
+        String email = getEmailFromPrincipal(principal);
+        User currentUser = userRepository.findByEmail(email);
+
         PlanTemplate template = new PlanTemplate();
         template.setNume(nume);
         template.setContinutHtml(continutHtml);
-        
-        // Salvăm în baza de date (asigură-te că folosești numele corect al repository-ului tău)
-        templateRepository.save(template); 
+        template.setUser(currentUser);
+
+        templateRepository.save(template);
 
         return ResponseEntity.ok("Template salvat cu succes!");
     }
 
     @GetMapping("/my-templates")
-    public String viewTemplates(Model model) {
-        model.addAttribute("templates", templateRepository.findAll());
-        // Trimitem toată baza de exerciții către JavaScript:
-        model.addAttribute("listaExercitii", exercitiuRepository.findAll()); 
+    public String viewTemplates(Model model, Principal principal) {
+        String email = getEmailFromPrincipal(principal);
+        User currentUser = userRepository.findByEmail(email);
+        model.addAttribute("templates", templateRepository.findByUser(currentUser));
+        model.addAttribute("listaExercitii", exercitiuRepository.findAll());
         return "my-templates";
     }
 

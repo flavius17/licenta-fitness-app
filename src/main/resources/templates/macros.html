@@ -43,9 +43,12 @@
         }
 
         .macro-card:hover {
-            border-color: #8B0000;
             transform: translateY(-5px);
         }
+
+        .macro-card.card-green:hover  { border-color: #28a745; }
+        .macro-card.card-red:hover    { border-color: #ff3333; }
+        .macro-card.card-blue:hover   { border-color: #17a2b8; }
 
         .macro-header {
             font-size: 1.5rem;
@@ -107,8 +110,7 @@
 
     <nav class="navbar navbar-dark navbar-custom py-3 shadow mb-5">
         <div class="container">
-            <span class="navbar-brand fs-2">21 <span style="color: #ff3333;">GYM</span></span>
-            <a href="/tdee" class="btn btn-outline-light btn-sm">ÎNAPOI LA CALCULATOR</a>
+            <a href="/tdee" class="navbar-brand fs-2" style="text-decoration: none; color: inherit;">21 <span style="color: #ff3333;">GYM</span></a>
         </div>
     </nav>
 
@@ -123,7 +125,7 @@
         <div class="row g-4">
             
             <div class="col-md-4">
-                <div class="macro-card" style="border-top: 4px solid #28a745; cursor: pointer;" 
+                <div class="macro-card card-green" style="border-top: 4px solid #28a745; cursor: pointer;"
                      th:onclick="salveazaPlan('ECHILIBRAT', [[${bal_prot}]], [[${bal_carb}]], [[${bal_gras}]])">
                     
                     <div class="macro-header text-center">ECHILIBRAT</div>
@@ -145,7 +147,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="macro-card" style="border-top: 4px solid #ff3333; cursor: pointer;"
+                <div class="macro-card card-red" style="border-top: 4px solid #ff3333; cursor: pointer;"
                      th:onclick="salveazaPlan('LOW CARB', [[${low_prot}]], [[${low_carb}]], [[${low_gras}]])">
                      
                     <div class="macro-header text-center">LOW CARB</div>
@@ -167,7 +169,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="macro-card" style="border-top: 4px solid #17a2b8; cursor: pointer;"
+                <div class="macro-card card-blue" style="border-top: 4px solid #17a2b8; cursor: pointer;"
                      th:onclick="salveazaPlan('HIGH PROTEIN', [[${high_prot}]], [[${high_carb}]], [[${high_gras}]])">
                      
                     <div class="macro-header text-center">HIGH PROTEIN</div>

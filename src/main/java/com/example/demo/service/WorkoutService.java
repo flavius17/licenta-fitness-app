@@ -6,7 +6,8 @@ import com.example.demo.repository.WorkoutSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime; // <--- MODIFICAT AICI
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class WorkoutService {
         int prCounter = 0;
         
         // <--- MODIFICAT AICI: Folosim LocalDateTime ca să se potrivească perfect cu noua bază de date!
-        LocalDateTime azi = LocalDateTime.now(); 
+        LocalDateTime azi = LocalDateTime.now(ZoneId.of("Europe/Bucharest"));
 
         // MEMORIA SESIUNII CURENTE
         // Ținem minte cea mai mare greutate ridicată AZI pentru fiecare exercițiu (ID Exercițiu -> Greutate)
