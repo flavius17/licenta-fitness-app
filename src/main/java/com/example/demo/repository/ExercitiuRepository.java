@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ExercitiuRepository extends JpaRepository<Exercitiu, Long> {
-    // Adăugăm această metodă magică: Spring va ști automat să facă interogarea după nume!
     Exercitiu findByNume(String nume);
 }

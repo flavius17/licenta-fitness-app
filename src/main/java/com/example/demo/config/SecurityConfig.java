@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-// --- IMPORTURI NOI PENTRU SELECTARE CONT ---
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizationRequestResolver;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestResolver;
@@ -21,7 +20,6 @@ public class SecurityConfig {
     @Autowired
     private OAuth2LoginSuccessHandler oauth2LoginSuccessHandler;
 
-    // --- MODIFICARE 1: Avem nevoie de asta ca să putem configura cererea către Google ---
     @Autowired
     private ClientRegistrationRepository clientRegistrationRepository;
 
@@ -42,7 +40,6 @@ public class SecurityConfig {
                 .permitAll()
             )
             
-            // --- MODIFICARE 2: Configurăm OAuth2 să forțeze Google să te întrebe ce cont vrei ---
             .oauth2Login(oauth2 -> oauth2
                 .loginPage("/login")
                 .authorizationEndpoint(authorization -> authorization
@@ -60,7 +57,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // --- MODIFICARE 3: Metoda magică care adaugă "prompt=select_account" în link-ul de Google ---
     private OAuth2AuthorizationRequestResolver authorizationRequestResolver(ClientRegistrationRepository repository) {
         DefaultOAuth2AuthorizationRequestResolver resolver = new DefaultOAuth2AuthorizationRequestResolver(repository, "/oauth2/authorization");
         

@@ -1,13 +1,13 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*; // <--- IMPORT OBLIGATORIU PENTRU BAZA DE DATE
+import jakarta.persistence.*;
 
-@Entity // <--- Spune-i lui Java ca asta e o tabela
+@Entity
 @Table(name = "exercitii") 
 public class Exercitiu {
 
-    @Id // <--- Cheia primara
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // <--- Se autogenereaza (1, 2, 3...)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nume;
@@ -15,11 +15,9 @@ public class Exercitiu {
     private String grupaMare;      
     private String muschiSpecific; 
 
-    // 1. CONSTRUCTOR GOL
     public Exercitiu() {
     }
 
-    // 2. Constructorul tau vechi
     public Exercitiu(String nume, String imagine, String grupaMare, String muschiSpecific) {
         this.nume = nume;
         this.imagine = imagine;
@@ -27,9 +25,6 @@ public class Exercitiu {
         this.muschiSpecific = muschiSpecific;
     }
 
-    // --- GETTERS ---
-    
-    // AICI ERA PROBLEMA: Lipsea acest Getter!
     public Long getId() { 
         return id; 
     }
@@ -39,8 +34,6 @@ public class Exercitiu {
     public String getGrupaMare() { return grupaMare; }
     public String getMuschiSpecific() { return muschiSpecific; }
 
-    // --- SETTERS ---
-    
     public void setId(Long id) { 
         this.id = id; 
     }

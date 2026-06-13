@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "users") // STANDARD: Tabelul se va numi 'users'
+@Table(name = "users")
 public class User {
 
     @Id
@@ -18,10 +18,8 @@ public class User {
     private String prenume;
     private String email;
     
-    // STANDARD: Spring Security caută 'password', așa că îi dăm 'password'
     private String password; 
 
-    // Date Profil
     private Double greutate;
     private Integer inaltime;
     private Integer varsta;
@@ -35,16 +33,14 @@ public class User {
         this.password = password;
     }
 
-    // --- DATE NOI PENTRU NUTRITIE ---
-    private Integer tintaCalorii;     // ex: 2500
-    private String obiectivNutritie;  // ex: "SLĂBIRE"
-    private String strategieMacro;    // ex: "HIGH PROTEIN"
+    private Integer tintaCalorii;
+    private String obiectivNutritie;
+    private String strategieMacro;
     
     private Integer tintaProteine;
     private Integer tintaCarbohidrati;
     private Integer tintaGrasimi;
 
-    // --- GETTERS ȘI SETTERS (Adaugă-i la finalul fișierului!) ---
     public Integer getTintaCalorii() { return tintaCalorii; }
     public void setTintaCalorii(Integer tintaCalorii) { this.tintaCalorii = tintaCalorii; }
 
@@ -63,8 +59,6 @@ public class User {
     public Integer getTintaGrasimi() { return tintaGrasimi; }
     public void setTintaGrasimi(Integer tintaGrasimi) { this.tintaGrasimi = tintaGrasimi; }
 
-    // --- GETTERS și SETTERS (Standard) ---
-
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -77,11 +71,9 @@ public class User {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    // AICI E SCHIMBAREA CHEIE: getPassword / setPassword
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
-    // Date Profil
     public Double getGreutate() { return greutate; }
     public void setGreutate(Double greutate) { this.greutate = greutate; }
 
@@ -93,7 +85,6 @@ public class User {
 
     private String role;
 
-    // --- ADAUGĂ GETTER ȘI SETTER ---
     public String getRole() { return role; }
 
     public void setRole(String role) { this.role = role; }

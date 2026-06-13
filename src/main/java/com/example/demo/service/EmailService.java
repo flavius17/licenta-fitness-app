@@ -13,7 +13,7 @@ public class EmailService {
 
     public void sendWelcomeEmail(String toEmail, String numeUtilizator) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("adresa.ta@gmail.com"); // Pune adresa ta de pe care trimiți
+        message.setFrom("adresa.ta@gmail.com");
         message.setTo(toEmail);
         message.setSubject("Bine ai venit în 21 GYM!");
         
@@ -24,7 +24,6 @@ public class EmailService {
                           
         message.setText(textBody);
         
-        // Trimitem mail-ul (îl poți pune într-un try-catch ca să nu crape aplicația dacă nu e net)
         try {
             mailSender.send(message);
             System.out.println("E-mail trimis cu succes către: " + toEmail);

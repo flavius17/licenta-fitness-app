@@ -22,7 +22,6 @@ public class GroqService {
     public String genereazaPlan(String profilUtilizator, String listaExercitiiJson) {
         RestTemplate restTemplate = new RestTemplate();
 
-        // Noul prompt inteligent care forțează AI-ul să gândească logic seriile, repetările și zilele
         String prompt = "Ești un antrenor personal expert care se bazeaza strict cum sa alcatuiasca un plan de antrenament pe science-based lifters. Profilul clientului: " + profilUtilizator +
                 ". Alege exerciții potrivite STRICT din această listă: " + listaExercitiiJson + ". " +
                 "\nINSTRUCȚIUNI LOGICE PENTRU TINE: " +
@@ -38,7 +37,6 @@ public class GroqService {
                 "Repetă acest bloc HTML pentru fiecare zi cerută. Nu adăuga texte explicative la început sau final, ci DOAR acest cod HTML strict!" +
                 "REGULĂ STRICTĂ: Alege exercițiile DOAR din fișierul JSON furnizat. Trebuie să folosești EXACT numele exercițiului așa cum apare în JSON (fără să adaugi, să ștergi sau să modifici nicio literă). De exemplu, dacă în JSON scrie 'squat', nu scrie 'Barbell squat' sau 'Squats'. Baza de date a aplicației se va bloca dacă modifici numele!";
 
-        // Formatul de date cerut de Groq
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("model", "llama-3.1-8b-instant");
 
@@ -49,7 +47,6 @@ public class GroqService {
         requestBody.put("messages", List.of(message));
         requestBody.put("temperature", 0.7);
 
-        // Setăm headerele de securitate (Autorizarea)
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(apiKey);
@@ -57,10 +54,8 @@ public class GroqService {
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
 
         try {
-            // Trimitem pachetul
             Map<String, Object> response = restTemplate.postForObject(apiUrl, entity, Map.class);
 
-            // Extragem răspunsul din JSON-ul primit
             List choices = (List) response.get("choices");
             Map firstChoice = (Map) choices.get(0);
             Map messageObj = (Map) firstChoice.get("message");

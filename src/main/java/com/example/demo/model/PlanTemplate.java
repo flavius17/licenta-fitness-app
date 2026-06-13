@@ -12,7 +12,6 @@ public class PlanTemplate {
 
     private String nume;
 
-    // Folosim LONGTEXT pentru că planul generat de AI e lung și conține cod HTML
     @Column(columnDefinition = "LONGTEXT")
     private String continutHtml;
 
@@ -20,7 +19,6 @@ public class PlanTemplate {
     @JoinColumn(name = "user_id")
     private User user;
 
-    // Constructori, Getteri și Setteri
     public PlanTemplate() {}
 
     public Long getId() { return id; }

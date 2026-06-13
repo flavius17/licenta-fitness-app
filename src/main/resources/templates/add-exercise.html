@@ -120,7 +120,6 @@
     </div>
 
     <script>
-        // LOGICA ADD EXERCISE
         const subData = {
             'Umeri': [ { name: 'Traps', img: 'traps.png', filterKey: 'Traps' }, { name: 'Delts', img: 'delts.png', filterKey: 'Delts' }],
             'Piept': [ { name: 'Pectorals', img: 'pectorals.png', filterKey: 'Chest' }, { name: 'Abs', img: 'abs.png', filterKey: 'Abs' }, { name: 'Serratus', img: 'serratus.png', filterKey: 'Serratus' } ],
@@ -189,13 +188,11 @@
             });
 
             if(selectedItems.length > 0) {
-                // Folosim aceeasi memorie temporara 'currentWorkout' pentru ambele pagini
                 let existing = JSON.parse(localStorage.getItem('currentWorkout')) || [];
                 localStorage.setItem('currentWorkout', JSON.stringify(existing.concat(selectedItems)));
             }
             
             // --- MODIFICAREA IMPORTANTA AICI ---
-            // Citim unde trebuie sa ne intoarcem. Daca nu scrie nimic, mergem la log-workout implicit.
             const returnPage = localStorage.getItem('returnPage') || '/log-workout';
             window.location.href = returnPage;
         }

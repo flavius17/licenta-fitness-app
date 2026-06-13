@@ -228,7 +228,6 @@
             // Resetăm animația ca să poată fi rulată din nou
             row.classList.remove('pop-effect');
             
-            // Dacă tocmai a fost bifată, rulăm doar animația de "Pop!"
             if(sq.classList.contains('checked')) {
                 void row.offsetWidth; // Truc mic de JS pentru a restarta o animație CSS
                 row.classList.add('pop-effect');

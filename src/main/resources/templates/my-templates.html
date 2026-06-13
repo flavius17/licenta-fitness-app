@@ -85,7 +85,6 @@
             const card = btnElement.closest('.template-card');
             const listaExercitii = card.querySelectorAll('.ai-generated-content li');
             
-            // 1. Aducem baza de date REALA din Java în JavaScript
             const exercitiiDb = /*[[${listaExercitii}]]*/ [];
             const dictionarDb = {};
 
@@ -93,8 +92,8 @@
                 exercitiiDb.forEach(ex => {
                     if (ex.nume && ex.imagine) {
                         dictionarDb[ex.nume.toLowerCase().trim()] = {
-                            id: ex.id,                  // ID-UL REAL!
-                            img: "/images/" + ex.imagine // POZA REALĂ!
+                            id: ex.id,
+                            img: "/images/" + ex.imagine
                         };
                     }
                 });
@@ -105,17 +104,14 @@
             listaExercitii.forEach((li, index) => {
                 let textComplet = li.innerText.trim(); 
                 
-                // 1. Tăiem textul la cratimă pentru a separa numele de detalii
                 let bucati = textComplet.split(/[-–—]/);
                 let numeBrut = bucati[0].trim(); 
                 let detalii = bucati.length > 1 ? bucati[1].trim() : ""; 
 
-                // 2. Construim titlul pe care îl vrei pe ecran
                 let titluDeAfisat = detalii ? (numeBrut + " | " + detalii) : numeBrut;
                 
                 let numeCautare = numeBrut.toLowerCase(); 
 
-                // 3. Căutare EXACTĂ
                 let matchReal = dictionarDb[numeCautare];
 
                 // 4. SMART SEARCH (dacă AI-ul greșește numele, ex: "barbell squat" -> "squat")
@@ -129,10 +125,9 @@
                     }
                 }
 
-                // 5. Dacă l-am găsit, îl adăugăm cu titlul lung și UN SINGUR rând gol
                 if (matchReal) {
                     antrenamentPentruLogare.push({
-                        id: matchReal.id,       // Fără ID-uri inventate! Doar ID real
+                        id: matchReal.id,
                         name: titluDeAfisat,    // AICI PUNEM TEXTUL LUNG ("Nume | 3 serii...")
                         img: matchReal.img,     
                         gifUrl: matchReal.img, 
@@ -153,7 +148,6 @@
                 return;
             }
 
-            // Gata, mergem spre pagina de antrenament!
             localStorage.setItem('currentWorkout', JSON.stringify(antrenamentPentruLogare));
             window.location.href = '/log-workout';
         }

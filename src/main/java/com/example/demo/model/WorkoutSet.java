@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime; // <--- MODIFICAT AICI
+import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -12,11 +12,10 @@ public class WorkoutSet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // --- AICI ESTE CHEIA: Trebuie să fie în română! ---
     private double greutate;
     private int repetari;
     
-    private LocalDateTime data; // <--- MODIFICAT AICI
+    private LocalDateTime data;
 
     @ManyToOne 
     @JoinColumn(name = "exercitiu_id", nullable = false)
@@ -29,7 +28,6 @@ public class WorkoutSet {
 
     public WorkoutSet() {}
 
-    // Getters și Setters (TREBUIE SĂ FIE ÎN ROMÂNĂ)
     public double getGreutate() { return greutate; }
     public void setGreutate(double greutate) { this.greutate = greutate; }
 
@@ -39,8 +37,8 @@ public class WorkoutSet {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     
-    public LocalDateTime getData() { return data; } // <--- MODIFICAT AICI
-    public void setData(LocalDateTime data) { this.data = data; } // <--- MODIFICAT AICI
+    public LocalDateTime getData() { return data; }
+    public void setData(LocalDateTime data) { this.data = data; }
     
     public Exercitiu getExercitiu() { return exercitiu; }
     public void setExercitiu(Exercitiu exercitiu) { this.exercitiu = exercitiu; }

@@ -11,7 +11,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-
 import java.io.IOException;
 import java.util.Optional;
 
@@ -32,17 +31,14 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
         Optional<User> existingUser = userRepository.findByEmail(email);
 
         if (existingUser.isEmpty()) {
-            // Dacă nu există în baza de date, îl creăm acum!
             User newUser = new User();
             newUser.setEmail(email);
             newUser.setNume(name);
             newUser.setRole("ROLE_USER");
-            // Parola rămâne goală sau punem ceva random, oricum nu se va folosi la login cu Google
             newUser.setPassword(""); 
             userRepository.save(newUser);
         }
 
-        // După ce ne-am asigurat că e în baza de date, îl trimitem la Dashboard
         super.setDefaultTargetUrl("/dashboard");
         super.onAuthenticationSuccess(request, response, authentication);
     }

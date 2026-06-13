@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     
-    // Aceasta linie ii permite aplicatiei sa gaseasca utilizatorul dupa email
     Optional<User> findByEmail(String email);
     
 }

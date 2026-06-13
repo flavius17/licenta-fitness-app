@@ -69,7 +69,6 @@ public class MainController {
     @Autowired 
     private QuoteService quoteService;
 
-    // --- METODĂ HELPER PENTRU EMAIL ---
     private String getEmailFromPrincipal(Principal principal) {
         if (principal instanceof OAuth2AuthenticationToken token) {
             return token.getPrincipal().getAttribute("email");
@@ -77,7 +76,6 @@ public class MainController {
         return principal.getName();
     }
 
-    // --- PAGINA DE START ---
     @GetMapping("/home")
     public String showHomePage() {
         return "home";
@@ -88,7 +86,6 @@ public class MainController {
         return "redirect:/home";
     }
 
-    // --- INREGISTRARE ---
     @GetMapping("/register")
     public String showRegisterPage() {
         return "register";
@@ -100,17 +97,13 @@ public class MainController {
         user.setPassword(encodedPassword);
         user.setRole("ROLE_USER");
         
-        // 1. Salvăm user-ul în baza de date
         userRepository.save(user);
         
-        // 2. Trimitem mail-ul (AICI MODIFICI):
-        // Am pus user.getEmail() de două ori ca să fim siguri că nu mai primești "null"
         emailService.sendWelcomeEmail(user.getEmail(), user.getEmail());
         
         return "redirect:/login";
     }
 
-    // --- LOGARE ---
     @GetMapping("/login")
     public String showLoginPage() {
         return "login";
@@ -130,7 +123,6 @@ public class MainController {
         return "dashboard";
     }
     
-    // --- MEMBRI (ADMIN) ---
     @GetMapping("/members")
     public String showMembersPage(Model model) {
         List<User> useriiMei = userRepository.findAll();
@@ -138,7 +130,6 @@ public class MainController {
         return "members";
     }
 
-    // --- CALCULATOR TDEE ---
     @GetMapping("/tdee")
     public String showTdeePage() {
         return "tdee";
@@ -199,7 +190,6 @@ public class MainController {
         return "macros"; 
     }
 
-    // --- WORKOUTS ---
     @GetMapping("/workouts")
     public String showWorkoutsPage(Model model, Principal principal) {
         String citatMotivational = quoteService.getRandomMotivationalQuote();
@@ -403,8 +393,6 @@ public class MainController {
         return "Eroare: Utilizator negăsit.";
     }
 
-    // --- METODE NOI PENTRU GENERATOR AI ---
-
     @GetMapping("/generator")
     public String showGeneratorPage() {
         return "generator";
@@ -414,28 +402,23 @@ public class MainController {
     public String handleAiGeneration(@RequestParam String nivel, 
                                      @RequestParam String scop, 
                                      @RequestParam int zile,
-                                     @RequestParam(required = false, defaultValue = "") String detalii, // PRELUĂM TEXTUL LIBER
+                                     @RequestParam(required = false, defaultValue = "") String detalii,
                                      Model model) {
         
-        // 1. Creăm profilul de bază
         String profil = "Utilizator cu nivel " + nivel + ", având scopul de " + scop + 
                          " și dorind să se antreneze " + zile + " zile pe săptămână.";
         
-        // 2. DACĂ a scris ceva la probleme medicale, adăugăm un ordin strict pentru AI
         if (!detalii.trim().isEmpty()) {
             profil += " FOARTE IMPORTANT: Utilizatorul are următoarele condiții medicale, probleme sau preferințe: '" + detalii + "'. " +
                       "TE ROG SĂ ȚII CONT STRICT DE ACESTE RESTRICȚII. Exclude orice exercițiu care i-ar putea agrava situația descrisă și alege alternative sigure.";
         }
         
-        // 3. Extragem lista de nume de exerciții din baza de date
         List<String> numeExercitii = exercitiuRepository.findAll().stream()
                 .map(Exercitiu::getNume)
                 .toList();
         
-        // 4. Apelăm serviciul AI
         String planGenerat = groqService.genereazaPlan(profil, numeExercitii.toString());
         
-        // 5. Trimitem rezultatul către pagina de vizualizare
         model.addAttribute("planAI", planGenerat);
         return "view-plan";
     }
@@ -516,29 +499,24 @@ public class MainController {
         return "my-templates";
     }
 
-    // 3. Metoda care șterge un template din baza de date
     @GetMapping("/delete-template/{id}")
     public String deleteTemplate(@PathVariable Long id) {
         templateRepository.deleteById(id);
         return "redirect:/my-templates";
     }
 
-    // --- EXPORT PDF ---
     @GetMapping("/export/pdf")
     public void exportWorkoutsToPDF(HttpServletResponse response, Principal principal) throws Exception {
-        // 1. Verificăm cine este logat
         if (principal == null) return;
         String email = getEmailFromPrincipal(principal);
         User user = userRepository.findByEmail(email).orElse(null);
         if (user == null) return;
 
-        // 2. Setăm răspunsul să fie de tip fișier PDF care se descarcă automat
         response.setContentType("application/pdf");
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=Istoric_Antrenamente_21GYM.pdf";
         response.setHeader(headerKey, headerValue);
 
-        // 3. Luăm și grupăm istoricul EXACT cum o faci pentru afișarea pe pagină
         List<WorkoutSet> toateSeturile = workoutSetRepository.findAll().stream()
                 .filter(set -> set.getUser() != null && set.getUser().getId().equals(user.getId()))
                 .sorted((s1, s2) -> s2.getId().compareTo(s1.getId()))
@@ -556,18 +534,15 @@ public class MainController {
             istoricDetaliat.get(dataTimp).get(exName).add(set);
         }
 
-        // 4. Creăm documentul PDF
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());
         document.open();
 
-        // 5. Desenăm titlul
         com.lowagie.text.Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18);
         Paragraph title = new Paragraph("Istoric Antrenamente - 21 GYM\n\n", titleFont);
         title.setAlignment(Paragraph.ALIGN_CENTER);
         document.add(title);
 
-        // 6. Scriem Datele în PDF
         com.lowagie.text.Font dateFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14);
         com.lowagie.text.Font exFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
         com.lowagie.text.Font setFont = FontFactory.getFont(FontFactory.HELVETICA, 11);
@@ -576,27 +551,24 @@ public class MainController {
         if (istoricDetaliat.isEmpty()) {
             document.add(new Paragraph("Nu există niciun antrenament înregistrat încă.", setFont));
         } else {
-            // Parcurgem zilele
             for (java.util.Map.Entry<java.time.LocalDateTime, java.util.Map<String, List<WorkoutSet>>> sessionEntry : istoricDetaliat.entrySet()) {
                 document.add(new Paragraph("Data: " + sessionEntry.getKey().format(formatter), dateFont));
-                document.add(new Paragraph(" ")); // rând liber
+                document.add(new Paragraph(" "));
 
-                // Parcurgem exercițiile din acea zi
                 for (java.util.Map.Entry<String, List<WorkoutSet>> exEntry : sessionEntry.getValue().entrySet()) {
                     document.add(new Paragraph("  Exercițiu: " + exEntry.getKey(), exFont));
                     
                     List<WorkoutSet> seturi = exEntry.getValue();
                     seturi.sort(java.util.Comparator.comparing(WorkoutSet::getId));
                     
-                    // Parcurgem seriile
                     int setNum = 1;
                     for (WorkoutSet set : seturi) {
                         document.add(new Paragraph("    Set " + setNum + " -> " + set.getGreutate() + " kg x " + set.getRepetari() + " repetări", setFont));
                         setNum++;
                     }
-                    document.add(new Paragraph(" ")); // rând liber după un exercițiu
+                    document.add(new Paragraph(" "));
                 }
-                document.add(new Paragraph("--------------------------------------------------")); // Linie despărțitoare între antrenamente
+                document.add(new Paragraph("--------------------------------------------------"));
                 document.add(new Paragraph(" "));
             }
         }

@@ -19,25 +19,20 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
     }
 
-    // --- ACESTA ESTE CODUL CARE LIPSEA! ---
-    // Rulează automat la pornirea serverului și umple baza de date
     @Bean
     CommandLineRunner runner(ExercitiuRepository repository) {
         return args -> {
-            // Verificăm dacă baza e goală
             long count = repository.count();
             
             if (count == 0) {
                 System.out.println("⏳ Baza de date e goală. Se încarcă exercițiile din JSON...");
                 try {
                     ObjectMapper mapper = new ObjectMapper();
-                    // Asigură-te că exercises.json este în folderul resources!
                     InputStream inputStream = TypeReference.class.getResourceAsStream("/exercises.json");
                     
                     if (inputStream != null) {
                         List<Exercitiu> exercitiiJson = mapper.readValue(inputStream, new TypeReference<List<Exercitiu>>(){});
                         
-                        // Salvăm în DB -> Se generează ID-uri automat (1, 2, 3...)
                         repository.saveAll(exercitiiJson);
                         System.out.println("✅ SUCCES: S-au salvat " + exercitiiJson.size() + " exerciții în baza de date!");
                     } else {

@@ -24,10 +24,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         }
 
-        // Dacă utilizatorul nu are rol setat (ex: un cont mai vechi), îi dăm implicit USER
         String role = user.getRole() != null ? user.getRole() : "ROLE_USER";
 
-        // Returnăm obiectul de securitate cu tot cu Rolul atașat!
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),
